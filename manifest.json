@@ -1,0 +1,22 @@
+{
+  "id": "definitive_gen1",
+  "name": "Definitive Gen 1",
+  "version": "0.1.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "overhaul",
+  "category": "MECHANIC",
+  "game_version": ">=0.1.75 <2.0.0",
+  "priority": 60,
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [
+    "modern_physical_special_split"
+  ],
+  "permissions": [
+    "engine_internals"
+  ],
+  "affects_link": true,
+  "github": "BigCatMellow/ReComp",
+  "description": "A clean, cohesive modernization of Pokemon Gen 1: preserve the game, remove friction, communicate more through consistent color and minimal UI."
+}
