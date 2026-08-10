@@ -1,0 +1,16 @@
+{
+  "id": "whos_that_trainer",
+  "name": "Who's That Trainer?",
+  "version": "1.5.0",
+  "entry": "main.lua",
+  "api": 2,
+  "category": "CONTENT",
+  "priority": 100,
+  "assets_transforms": "transforms.lua",
+  "github": "MyFriendPKMN/whos-that-trainer",
+  "game_version": ">=0.0.0-0 <2.0.0",
+  "permissions": [
+    "engine_internals", "network"
+  ],
+  "description": "Play as your own character whith custom starter or any pre configured character(Gym Leader, Elite Four member, or even your Rival). Bring your own digital art to life! Inject custom .png sprite sheets or play as Gym Leaders, Elite 4, and Team Rocket. Includes Player, Rival, Follower, and Starter customization with perfect Integer Scaling."
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ACCESS_PC_ANYWHERE",
+  "name": "Access PC Anywhere",
+  "version": "1.0.1",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "QOL",
+  "game_version": ">=0.1.0 <2.0.0",
+  "priority": 40,
+  "author": "masterwebx",
+  "dependencies": [],
+  "permissions": [],
+  "github": "masterwebx/gen1recomp-access-pc-anywhere",
+  "description": "Start menu PC. OVERWORLD ONLY (default ON) hides PC inside buildings."
+}

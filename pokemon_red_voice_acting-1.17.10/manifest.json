@@ -1,0 +1,21 @@
+{
+  "id": "pokemon_red_voice_acting",
+  "name": "Pokémon Red Voice Acting",
+  "version": "1.17.10",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "AUDIO",
+  "priority": 100,
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "incompatible": [],
+  "experimental": true,
+  "affects_link": false,
+  "permissions": [
+    "engine_internals"
+  ],
+  "description": "Adds voice acting to Pokémon Red while preserving the original dialogue flow, choices, battles, cutscenes, and gameplay. Current coverage extends from the opening through Viridian Forest, the first Route 22 rival encounter, and Pewter City's outdoor NPCs.",
+  "github": "1-Camp0-1/Gen1recomp-VoiceActingMod"
+}

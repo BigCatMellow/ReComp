@@ -1,0 +1,13 @@
+{
+  "id": "overworld_encounters",
+  "name": "Overworld Wild Encounters Mod",
+  "version": "0.0.6",
+  "entry": "main.lua",
+  "author": "Gamecorner33 (with AI Assistant Antigravity)",
+  "description": "Replaces hidden random encounters with real-time roaming overworld Pokémon sprites across Kanto. Integrated with 3D Voxel mode, follower mods, time-of-day species rotation, and Gen 2 extensibility.",
+  "category": "GRAPHICS",
+  "permissions": [
+    "engine_internals"
+  ],
+  "github": "gamecorner-033/Gen1PC-OverworldEncounters"
+}

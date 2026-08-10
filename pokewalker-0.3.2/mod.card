@@ -1,0 +1,38 @@
+-- Sharing metadata (25-community-and-ecosystem.md 3.2).  Read by tooling
+-- and the manager detail pane; never by the loader's merge.
+return {
+  summary = "Real-world steps become EXP for your party (iOS & Android).",
+  author = "mresnick67",
+  contact = "https://github.com/mresnick67/Gen1ReComp-Pokewalker",
+  tags = { "mechanic", "ios", "android", "health", "opt-in", "field" },
+  differences = {
+    changed = {},
+    added = {
+      "an opt-in SYNC STEPS option: Apple Health step counts convert to "
+        .. "EXP at a configurable rate (10/20/50 steps per EXP)",
+      "EXP lands on the lead mon or splits across the party, applied with "
+        .. "the engine's own growth curves and rare-candy stat math",
+      "a paged walk-report dialog at quiet overworld moments (app open, "
+        .. "map change, battle end), each page waiting for the A button",
+      "level-up moves crossed while walking are learned like a rare candy "
+        .. "level: auto-learn into a free slot, the engine's forget-a-move "
+        .. "menu when four moves are known",
+    },
+    known = {
+      "needs an iOS or Android build that ships the native step bridge "
+        .. "(love.system.syncHealthSteps); on every other platform the mod "
+        .. "loads but stays dormant",
+      "Android counts steps with the hardware step counter: no Health app "
+        .. "needed, but steps between a phone reboot and the next sync are "
+        .. "not credited",
+      "level evolutions still wait for the next in-battle or rare-candy "
+        .. "level; walking never evolves a mon",
+      "steps sync on launch/activation; no background delivery yet",
+    },
+  },
+  credits = {
+    { who = "Nintendo's Pokewalker (HGSS)", for_ = "the idea this recreates" },
+    { who = "bryanthaboi/gen1recomp", for_ = "the engine and mod platform" },
+  },
+  compat = { engine = ">=1.0.0 <2.0.0", modApi = 2 },
+}

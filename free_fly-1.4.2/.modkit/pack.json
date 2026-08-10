@@ -1,0 +1,60 @@
+{
+  "modkit": "1.0.0",
+  "packed_at": "2026-08-08T20:33:51Z",
+  "id": "free_fly",
+  "version": "1.4.2",
+  "api": 2,
+  "engine_range": "0.0.0-dev || >=0.1.0 <2.0.0",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 17423,
+      "sha256": "93621d4c023a32da78d659e650ff59e3fe96af469a1eb5dcac8dfef05866b9e9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7862,
+      "sha256": "0aab495acf92b96ca9f5483c6cff1cecba17df3adb5b5d11528746ebaf184fea"
+    },
+    {
+      "path": "lib/shared/skylib.lua",
+      "bytes": 7768,
+      "sha256": "4104683d36a97347cff2cfb0674e0da0c0e6a772316ef5e60f6637d7d0c22c2f"
+    },
+    {
+      "path": "main.lua",
+      "bytes": 79180,
+      "sha256": "d9f822a5023547f7c2db31e08c90049b80ca383ebf9b661ca6f4259f11e685e4"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 518,
+      "sha256": "43dcb070086f03cabf05d85c7d7702115481ea7326b15289e56216ac581377f2"
+    },
+    {
+      "path": "mod.card",
+      "bytes": 1215,
+      "sha256": "99d05db6818974e9fe07ffe554d01451e1dcef998e2778580eb0671b8a5a3829"
+    },
+    {
+      "path": "tests/free_fly_exports_test.lua",
+      "bytes": 1498,
+      "sha256": "9a4980dd672539cb5f77996dc36c78fadc493ad63b49a87948449407f9e2916b"
+    },
+    {
+      "path": "tests/free_fly_load_test.lua",
+      "bytes": 656,
+      "sha256": "63fee06a45a2bd5db53e60ea5168eef9c1805f21ea3dc0d2150ff299e6f7a285"
+    },
+    {
+      "path": "tests/free_fly_menu_test.lua",
+      "bytes": 2180,
+      "sha256": "9de1ab3647a737777f5e336f59277da18f38183feb1cd5f9b5f48d8df8d80f17"
+    }
+  ],
+  "lint": {
+    "no_rom_content": "pass",
+    "schema": "pass",
+    "cross_refs": "pass"
+  }
+}

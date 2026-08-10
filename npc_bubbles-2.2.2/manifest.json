@@ -1,0 +1,21 @@
+{
+  "id": "npc_bubbles",
+  "name": "NPC Bubbles",
+  "version": "2.2.2",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "game_version": ">=0.0.0-0 <2.0.0",
+  "category": "UI",
+  "priority": 100,
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "incompatible": [],
+  "experimental": false,
+  "description": "Marks NPCs worth talking to. A solid ! means they have something for you right now. A faded ! means they will later, but not yet. A ? means talking to them changes something in the world. A smile means they say different things as you progress, so they are worth another word later on. Each type can be turned off.",
+  "permissions": [
+    "engine_internals"
+  ],
+  "github": "ddagent/gen1recomp-npc-bubbles"
+}

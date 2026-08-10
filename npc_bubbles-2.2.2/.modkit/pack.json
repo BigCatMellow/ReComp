@@ -1,0 +1,40 @@
+{
+  "modkit": "1.0.0",
+  "packed_at": "2026-08-08T22:38:05Z",
+  "id": "npc_bubbles",
+  "version": "2.2.2",
+  "api": 2,
+  "engine_range": ">=0.0.0-0 <2.0.0",
+  "files": [
+    {
+      "path": ".luarc.json",
+      "bytes": 69,
+      "sha256": "64f42cfe88c55ecffc1dcd2314a97fd2eb9e15536d70c39b57f181604687f4d6"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 23563,
+      "sha256": "0df725bf9d350b9409d03d5342ba05ebc3fe5f1cf55ce9ff0eaa0c199c615d8c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4079,
+      "sha256": "fad48090c054ddc8e7754962868480829939d6d255b4a9732fea9d6c6a76b0e6"
+    },
+    {
+      "path": "main.lua",
+      "bytes": 87434,
+      "sha256": "85f3f0dc7bf3cbf3c15b07a7c9baf659282cee58731604d5fe60018145c423f2"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 756,
+      "sha256": "201ef69c0a7e6a982ddd01894a6a9528d6d654f3f10b6a23aa2ae64e5d477718"
+    }
+  ],
+  "lint": {
+    "no_rom_content": "pass",
+    "schema": "pass",
+    "cross_refs": "pass"
+  }
+}

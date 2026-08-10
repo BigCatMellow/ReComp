@@ -1,0 +1,12 @@
+{
+  "id": "SFXMusicReplacementMod",
+  "name": "SFXMusicReplacementMod",
+  "version": "2.0.0",
+  "entry": "main.lua",
+  "api": 2,
+  "priority": 100,
+  "category": "AUDIO",
+  "profile": "content",
+  "affects_link": false,
+  "description": "Toggle soundtrack (Original / FireRed / Let's Go) and SFX (Original / FireRed / Modern / Gen 5)."
+}

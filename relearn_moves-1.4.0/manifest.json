@@ -1,0 +1,23 @@
+{
+  "id": "relearn_moves",
+  "name": "Move Relearn",
+  "version": "1.4.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "game_version": ">=0.0.0-0 <2.0.0",
+  "category": "GAMEPLAY",
+  "priority": 100,
+  "dependencies": [],
+  "optional_dependencies": [
+    "qol_toggles"
+  ],
+  "conflicts": [],
+  "incompatible": [],
+  "experimental": false,
+  "permissions": [
+    "engine_internals"
+  ],
+  "description": "Adds a RELEARN option at the bottom of the party menu (after SWITCH, field only) so a POKéMON can relearn any move from its species movelist it has reached the level for, replacing an old move when the moveset is full. HM moves stay unforgettable unless the QoL Toggles mod's FORGETTABLE HMs toggle is on.",
+  "github": "ShaneMcGovernIE/relearn_moves"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "useful_dex",
+  "name": "Useful Dex",
+  "version": "1.3.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "UI",
+  "game_version": ">=0.0.0-0 <2.0.0",
+  "priority": 100,
+  "permissions": [
+    "engine_internals"
+  ],
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "description": "In the Pokédex, press A to cycle the species data page into base stats, BST and evolutions, then the full movelist (learned + TM/HM). Press SELECT on the Pokédex list to cycle numbered, alphabetical and caught-only views.",
+  "github": "ShaneMcGovernIE/useful_dex"
+}

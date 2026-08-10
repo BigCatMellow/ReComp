@@ -1,0 +1,50 @@
+{
+  "modkit": "1.0.0",
+  "packed_at": "2026-08-06T12:47:08Z",
+  "id": "gen3_dex",
+  "version": "0.2.2",
+  "api": 2,
+  "engine_range": ">=0.0.0-0 <2.0.0",
+  "files": [
+    {
+      "path": ".luarc.json",
+      "bytes": 69,
+      "sha256": "64f42cfe88c55ecffc1dcd2314a97fd2eb9e15536d70c39b57f181604687f4d6"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 4865,
+      "sha256": "2fc71966616f837329f3265e6b3f079d04bee5087617be5237298510c6f3542d"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1067,
+      "sha256": "f8db0a61639b83858b1159df29e8229c2e65115398570a5422226cd80074646c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4495,
+      "sha256": "db8263d57173c1d8e34bdafe0a1927b92ceb8c1c750273074eb05592fcb48217"
+    },
+    {
+      "path": "main.lua",
+      "bytes": 18841,
+      "sha256": "652c689b313dba7abe87b9011d9fab56791a033278ec6c15e724b62f5dacdf16"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 926,
+      "sha256": "1afec287a5a2f22378dbddaa95ff7d3f07a9ab649ecd0db6318a398e775fbc33"
+    },
+    {
+      "path": "mod.card",
+      "bytes": 1956,
+      "sha256": "43860fdfe70b42c6fc2e9f4e116e118b4ae5feb409010c72210573c6bbc49f23"
+    }
+  ],
+  "lint": {
+    "no_rom_content": "pass",
+    "schema": "pass",
+    "cross_refs": "pass"
+  }
+}

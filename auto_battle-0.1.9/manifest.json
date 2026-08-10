@@ -1,0 +1,18 @@
+{
+  "id": "auto_battle",
+  "name": "Auto Battle",
+  "author": "eduardocalafell",
+  "github": "eduardocalafell/gen1recomp-auto-battle",
+  "version": "0.1.9",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "Gameplay",
+  "game_version": ">=0.1.37 <2.0.0",
+  "priority": 100,
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "permissions": ["engine_internals"],
+  "description": "Auto-picks your move each battle turn: the most type-effective damaging move, falling back to the NPC AI when there's no good hit. Shows an AUTO badge since the FIGHT menu no longer opens. Tap the D-pad during the short window to take manual control for that turn."
+}

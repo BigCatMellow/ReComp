@@ -1,0 +1,23 @@
+{
+  "id": "SWITCH_ADVISOR",
+  "name": "Switch Advisor",
+  "version": "1.0.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "QOL",
+  "game_version": ">=0.0.0-0 <2.0.0",
+  "priority": 100,
+  "author": "allanrmartins",
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "incompatible": [],
+  "experimental": false,
+  "permissions": [
+    "engine_internals"
+  ],
+  "affects_link": false,
+  "github": "allanrmartins/gen1recomp-switch-advisor",
+  "description": "Grades every party mon against the foe on the battle switch screen, and sends caught POKeMON straight to the party with no nickname prompt."
+}

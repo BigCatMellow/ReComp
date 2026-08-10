@@ -1,0 +1,781 @@
+-- Engine-facing bootstrap. This is the only milestone-1 module that knows
+-- about the gen1recomp mod object.
+return function(
+    Constants, Contracts, Generator, Species, SaveState, SaveLifecycle,
+    Options, WildRuntime, StarterOffer, StarterCompat, StarterRuntime,
+    StaticGiftCompat, TradePrizeCompat, TrainerRuntime, ItemRuntime,
+    MechanicsRuntime,
+    ItemSourceCatalog,
+    SpoilerController, SpoilerLog, SpoilerBrowser, SpoilerBrowserScreen,
+    NewGameSetup, PublicFacade)
+  local Bootstrap = {}
+
+  local REQUIRED_TABLES = {
+    "content",
+    "events",
+    "hooks",
+    "save",
+    "options",
+    "migrations",
+    "ui",
+    "log",
+    "exports",
+  }
+
+  local function assertFunction(owner, name, path)
+    assert(type(owner) == "table" and type(owner[name]) == "function",
+      ("mod API 2 is missing %s"):format(path))
+  end
+
+  local function validateModObject(mod)
+    assert(type(mod) == "table", "mod API object must be a table")
+    assert(mod.id == Constants.MOD_ID,
+      ("manifest id mismatch: expected %s, got %s"):format(
+        Constants.MOD_ID, tostring(mod.id)))
+    assert(mod.version == Constants.MOD_VERSION,
+      ("manifest version mismatch: expected %s, got %s"):format(
+        Constants.MOD_VERSION, tostring(mod.version)))
+    assert(type(mod.manifest) == "table"
+        and mod.manifest.api == Constants.MOD_API,
+      ("pokemon_randomizer requires mod API %d"):format(Constants.MOD_API))
+
+    for _, key in ipairs(REQUIRED_TABLES) do
+      assert(type(mod[key]) == "table",
+        ("mod API 2 is missing mod.%s"):format(key))
+    end
+
+    assertFunction(mod.events, "on", "mod.events:on")
+    assertFunction(mod.events, "once", "mod.events:once")
+    assertFunction(mod.hooks, "wrap", "mod.hooks:wrap")
+    assertFunction(mod.save, "get", "mod.save:get")
+    assertFunction(mod.save, "set", "mod.save:set")
+    assertFunction(mod.options, "define", "mod.options:define")
+    assertFunction(mod.options, "get", "mod.options:get")
+    assertFunction(mod.ui, "insertBefore", "mod.ui.insertBefore")
+    assertFunction(mod.ui, "insertStepBefore", "mod.ui.insertStepBefore")
+    assertFunction(mod.ui.TextBox, "new", "mod.ui.TextBox.new")
+    assertFunction(mod.ui.ListMenu, "new", "mod.ui.ListMenu.new")
+    assertFunction(mod.migrations, "add", "mod.migrations:add")
+    assertFunction(mod.content.screens, "register",
+      "mod.content.screens:register")
+    assertFunction(mod.content.map_scripts, "register",
+      "mod.content.map_scripts:register")
+    assertFunction(mod.content.commands, "get",
+      "mod.content.commands:get")
+    assertFunction(mod.content.commands, "register",
+      "mod.content.commands:register")
+    assertFunction(mod.content.field, "get",
+      "mod.content.field:get")
+    assertFunction(mod.log, "info", "mod.log:info")
+    assertFunction(mod.log, "warn", "mod.log:warn")
+    assertFunction(mod.log, "error", "mod.log:error")
+  end
+
+  function Bootstrap.start(mod)
+    validateModObject(mod)
+
+    local function manifestOptions(options)
+      local copy = {}
+      for key, value in pairs(options or {}) do copy[key] = value end
+      copy.metadata = Species.Metadata:snapshot()
+      return copy
+    end
+
+    local function mergedSpeciesRecords()
+      local registry = mod.content.pokemon
+      assert(type(registry) == "table"
+          and type(registry.each) == "function",
+        "mod API 2 is missing mod.content.pokemon:each")
+      local records = {}
+      for id, record in registry:each() do records[id] = record end
+      return records
+    end
+
+    local function mergedEncounterRecords()
+      local registry = mod.content.encounters
+      assert(type(registry) == "table"
+          and type(registry.each) == "function",
+        "mod API 2 is missing mod.content.encounters:each")
+      local records = {}
+      for id, record in registry:each() do records[id] = record end
+      return records
+    end
+
+    local function mergedTrainerRecords()
+      local registry = mod.content.trainers
+      assert(type(registry) == "table"
+          and type(registry.each) == "function",
+        "mod API 2 is missing mod.content.trainers:each")
+      local records = {}
+      for id, record in registry:each() do records[id] = record end
+      return records
+    end
+
+    local function mergedMoveRecords()
+      local registry = mod.content.moves
+      if type(registry) ~= "table" or type(registry.each) ~= "function" then
+        return {}
+      end
+      local records = {}
+      for id, record in registry:each() do records[id] = record end
+      return records
+    end
+
+    local function mergedTypeIds()
+      local found = {}
+      local registry = mod.content.type_chart
+      if type(registry) == "table" and type(registry.each) == "function" then
+        for id in registry:each() do
+          if type(id) == "string" then
+            local attacking, defending = id:match("^([^>]+)>(.+)$")
+            if attacking then found[attacking], found[defending] = true, true end
+          end
+        end
+      end
+      for _, record in pairs(mergedSpeciesRecords()) do
+        for _, id in ipairs(type(record) == "table" and record.types or {}) do
+          found[id] = true
+        end
+      end
+      for _, record in pairs(mergedMoveRecords()) do
+        if type(record) == "table" and type(record.type) == "string" then
+          found[record.type] = true
+        end
+      end
+      local ids = {}
+      for id in pairs(found) do ids[#ids + 1] = id end
+      table.sort(ids)
+      return ids
+    end
+
+
+    local function mergedMapRecords()
+      local registry = mod.content.maps
+      if type(registry) ~= "table" or type(registry.each) ~= "function" then
+        return {}
+      end
+      local records = {}
+      for id, record in registry:each() do records[id] = record end
+      return records
+    end
+
+    local function mergedItemRecords()
+      local registry = mod.content.items
+      if type(registry) ~= "table" or type(registry.each) ~= "function" then
+        return {}
+      end
+      local records = {}
+      for id, record in registry:each() do records[id] = record end
+      return records
+    end
+
+    local function mergedTextPointerRecords()
+      local registry = mod.content.text_pointers
+      if type(registry) ~= "table" or type(registry.each) ~= "function" then
+        return {}
+      end
+      local records = {}
+      for id, record in registry:each() do records[id] = record end
+      return records
+    end
+
+    local function mergedFieldRecords(save)
+      local registry = mod.content.field
+      local fishing = registry:get("fishing")
+      local records = {
+        fishing = fishing,
+        trades = registry:get("trades"),
+        hiddenItems = registry:get("hiddenItems"),
+      }
+      for _, definition in pairs(fishing or {}) do
+        if type(definition) == "table"
+            and type(definition.perMap) == "string" then
+          records[definition.perMap] = registry:get(definition.perMap)
+        end
+      end
+      return records, save and save.version or "red"
+    end
+
+    local function mergedTypeEffectiveness()
+      local registry = mod.content.type_chart
+      if type(registry) ~= "table" or type(registry.each) ~= "function" then
+        return {}
+      end
+      local chart = {}
+      for id, record in registry:each() do
+        local attacking, defending
+        if type(id) == "string" then
+          attacking, defending = id:match("^([^>]+)>(.+)$")
+        end
+        if attacking and defending and type(record) == "table"
+            and type(record.multiplier) == "number" then
+          chart[attacking] = chart[attacking] or {}
+          chart[attacking][defending] = record.multiplier / 10
+        end
+      end
+      return chart
+    end
+
+    local publicApi = {
+      contractVersion = Constants.CONTRACT_VERSION,
+      saveSchemaVersion = Constants.SAVE_SCHEMA_VERSION,
+      algorithmVersion = Constants.ALGORITHM_VERSION,
+      hashVersion = Constants.HASH_VERSION,
+      prngVersion = Constants.PRNG_VERSION,
+      generator = PublicFacade.generator(Generator),
+      registerSpeciesMeta = function(id, metadata)
+        return Species.Metadata:register(id, metadata)
+      end,
+      species = PublicFacade.species({
+        manifestVersion = Constants.SPECIES_MANIFEST_VERSION,
+        buildManifest = function(options)
+          return Generator.buildSpeciesManifest(
+            mergedSpeciesRecords(), manifestOptions(options))
+        end,
+        candidates = Generator.speciesCandidates,
+        metadataSnapshot = function()
+          return Species.Metadata:snapshot()
+        end,
+        metadataFrozen = function()
+          return Species.Metadata:isFrozen()
+        end,
+        metadataDiagnostics = function()
+          return Species.Metadata:diagnostics()
+        end,
+      }),
+      contracts = PublicFacade.contracts(Contracts),
+    }
+
+    local preferences = Options.Preferences.new(mod)
+    preferences:define()
+
+    local lifecycle = SaveLifecycle.new({
+      records = mergedSpeciesRecords,
+      metadata = function() return Species.Metadata:snapshot() end,
+      log = mod.log,
+      settings = function() return preferences:snapshot() end,
+      sources = function(save)
+        local field, version = mergedFieldRecords(save)
+        return {
+          encounters = mergedEncounterRecords(),
+          trainers = mergedTrainerRecords(),
+          maps = mergedMapRecords(),
+          items = mergedItemRecords(),
+          textPointers = mergedTextPointerRecords(),
+          scriptedItems = ItemSourceCatalog,
+          startingPcItems = type(save) == "table" and save.pcItems or {},
+          field = field,
+          gameVersion = version,
+          typeEffectiveness = mergedTypeEffectiveness(),
+          moves = mergedMoveRecords(),
+          typeIds = mergedTypeIds(),
+        }
+      end,
+    })
+    mod.content.map_scripts:register(
+      "OAKS_LAB",
+      StarterCompat.contribution(
+        function() return lifecycle:activeRun() end))
+    StaticGiftCompat.install(
+      mod, function() return lifecycle:activeRun() end)
+    TradePrizeCompat.install(
+      mod, function() return lifecycle:activeRun() end)
+    ItemRuntime.install(
+      mod, function() return lifecycle:activeRun() end)
+    local function spoilerBrowserModel(game, run)
+      local data = type(game) == "table" and game.data or {}
+      local save = type(game) == "table" and game.save or nil
+      local field = {}
+      for key, value in pairs(type(data.field) == "table"
+          and data.field or {}) do
+        field[key] = value
+      end
+      local generatedField, generatedVersion = mergedFieldRecords(
+        save)
+      for key, value in pairs(generatedField) do field[key] = value end
+      local dataSpecies = type(data.pokemon) == "table"
+          and next(data.pokemon) and data.pokemon or nil
+      local dataEncounters = type(data.encounters) == "table"
+          and next(data.encounters) and data.encounters or nil
+      local dataTrainers = type(data.trainers) == "table"
+          and next(data.trainers) and data.trainers or nil
+      local species = dataSpecies or mergedSpeciesRecords()
+      local encounters = dataEncounters or mergedEncounterRecords()
+      local trainers = dataTrainers or mergedTrainerRecords()
+      local maps = type(data.maps) == "table" and data.maps or {}
+      local sourceIdentity = table.concat({
+        tostring(dataSpecies or mod.content.pokemon),
+        tostring(dataEncounters or mod.content.encounters),
+        tostring(dataTrainers or mod.content.trainers),
+        tostring(maps),
+        tostring(type(data.field) == "table" and data.field
+          or mod.content.field),
+        tostring(type(data.items) == "table" and data.items
+          or mod.content.items),
+        tostring(type(data.text_pointers) == "table" and data.text_pointers
+          or mod.content.text_pointers),
+      }, "|")
+      return {
+        index = SpoilerBrowser.buildCached(run, {
+          species = species,
+          encounters = encounters,
+          trainers = trainers,
+          maps = maps,
+          field = field,
+          items = type(data.items) == "table" and data.items or {},
+          textPointers = type(data.text_pointers) == "table"
+            and data.text_pointers or mergedTextPointerRecords(),
+          scriptedItems = ItemSourceCatalog,
+          gameVersion = type(save) == "table"
+              and save.version or generatedVersion,
+          saveIdentity = table.concat({
+            tostring(save),
+            tostring(lifecycle:status().revision),
+          }, ":"),
+          cacheIdentity = sourceIdentity,
+        }),
+      }
+    end
+    local viewSpoilers = SpoilerController.viewAction(
+      mod, lifecycle, spoilerBrowserModel)
+    local viewSpoilersFromStart = SpoilerController.viewAction(
+      mod, lifecycle, function(game, run)
+        local model = spoilerBrowserModel(game, run)
+        model.onCancel = function(activeGame)
+          mod.ui.push(activeGame or game, "StartMenu")
+        end
+        return model
+      end)
+    local exportSpoilers = SpoilerController.exportAction(mod, lifecycle)
+    publicApi.save = PublicFacade.save({
+      checksumVersion = Constants.SAVE_CHECKSUM_VERSION,
+      validate = SaveState.validate,
+      checksum = SaveState.checksum,
+      activeRun = function()
+        return SpoilerLog.publicRun(lifecycle:activeRun())
+      end,
+      status = function() return lifecycle:status() end,
+    })
+    publicApi.preferences = PublicFacade.preferences({
+      schema = function() return preferences:schema() end,
+      pages = function() return preferences:pages() end,
+      snapshot = function() return preferences:snapshot() end,
+      preset = Options.General.preset,
+      detectPreset = Options.General.detectPreset,
+      behaviorSettings = Options.General.behaviorSettings,
+    })
+    publicApi.runCode = Options.General.runCode
+    publicApi.spoilers = PublicFacade.spoilers({
+      canAccess = SpoilerController.canAccess,
+      export = SpoilerController.export,
+      format = SpoilerController.text,
+    })
+
+    for key, value in pairs(publicApi) do mod.exports[key] = value end
+
+    local function screenStatus()
+      local status = lifecycle:status()
+      status.run = lifecycle:activeRun()
+      return status
+    end
+
+    mod.content.screens:register(Constants.OPTIONS_SCREEN_ID, {
+      new = function(game, model)
+        local function reviewNextRun(activeGame)
+          local lines = {}
+          local settings = preferences:snapshot(activeGame)
+          lines[#lines + 1] = "SEED: "
+            .. (settings.seed_mode == "auto"
+              and "AUTO" or (settings.seed_text ~= ""
+                and settings.seed_text or "(EMPTY)"))
+          for _, row in ipairs(preferences:schema()) do
+            lines[#lines + 1] =
+              row.label .. ": " .. preferences:display(row, activeGame)
+          end
+          local manifest = Generator.buildSpeciesManifest(
+            mergedSpeciesRecords(), {
+              poolMode = Options.General.poolMode(settings),
+              metadata = Species.Metadata:snapshot(),
+            })
+          lines[#lines + 1] = ("POOL: %d ELIGIBLE"):format(
+            manifest.diagnostics.counts.eligible)
+          if manifest.diagnostics.counts.excluded > 0 then
+            lines[#lines + 1] = ("POOL EXCLUDED: %d"):format(
+              manifest.diagnostics.counts.excluded)
+          end
+          for _, warning in ipairs(manifest.diagnostics.warnings) do
+            lines[#lines + 1] = "WARNING " .. warning.code
+          end
+          local warnings = Options.General.reviewWarnings(settings)
+          if #warnings == 0 then
+            lines[#lines + 1] = "VALIDATION: OK"
+          else
+            for _, warning in ipairs(warnings) do
+              lines[#lines + 1] =
+                "WARNING " .. warning.code .. ": " .. warning.message
+            end
+          end
+          mod.ui.push(activeGame, Constants.REVIEW_SCREEN_ID, {
+            title = "NEXT RUN",
+            lines = lines,
+          })
+        end
+
+        local function copyActiveSeed(activeGame)
+          local run = lifecycle:activeRun()
+          if not run then return "NO ACTIVE RUN" end
+          local summary = Options.General.activeRunSummary(run)
+          local text = summary.seedLabel .. ": " .. summary.seed
+            .. "\nRUN CODE: " .. summary.runCode
+          local copied = false
+          local system = love and love.system
+          if system and type(system.setClipboardText) == "function" then
+            local ok = pcall(system.setClipboardText, text)
+            copied = ok
+          end
+          mod.ui.push(activeGame, Constants.REVIEW_SCREEN_ID, {
+            title = "ACTIVE RUN",
+            lines = {
+              summary.seedLabel,
+              summary.seed,
+              "RUN CODE",
+              summary.runCode,
+              "ALGORITHM " .. summary.algorithm,
+              "RUN SETTINGS: LOCKED",
+              "WILD: " .. summary.settings.wild_pokemon,
+              "STARTERS: " .. summary.settings.starters,
+              "STATIC: " .. summary.settings.static_pokemon,
+              "GIFTS: " .. summary.settings.gift_pokemon,
+              "TRADES: " .. summary.settings.in_game_trades,
+              "PRIZES: " .. summary.settings.game_corner_pokemon,
+              "TRAINERS: " .. summary.settings.trainer_pokemon,
+            },
+          })
+          return copied and "SEED COPIED" or "COPY UNAVAILABLE"
+        end
+
+        return Options.Screen.new(
+          game, preferences, mod.ui, screenStatus, {
+            review_next_run = reviewNextRun,
+            copy_active_seed = copyActiveSeed,
+            view_spoiler_log = viewSpoilers,
+            export_spoiler_log = exportSpoilers,
+          }, model)
+      end,
+    })
+
+    mod.content.screens:register(Constants.REVIEW_SCREEN_ID, {
+      new = function(game, model)
+        return Options.ReviewScreen.new(game, model, mod.ui)
+      end,
+    })
+
+    mod.content.screens:register(Constants.SPOILER_BROWSER_SCREEN_ID, {
+      new = function(game, model)
+        return SpoilerBrowserScreen.new(game, model, mod.ui)
+      end,
+    })
+
+    mod.hooks:wrap("ui.options.rows", function(nextFn, game, rows)
+      local output = nextFn(game, rows)
+      if type(output) ~= "table" then return output end
+      output[#output + 1] = {
+        id = "pokemon_randomizer",
+        label = "RANDOMIZER",
+        value = function()
+          return screenStatus().active and "LOCKED" or "OPEN"
+        end,
+        activate = function(activeGame)
+          mod.ui.push(activeGame, Constants.OPTIONS_SCREEN_ID)
+        end,
+      }
+      return output
+    end)
+
+    mod.hooks:wrap("ui.start_menu.items", function(nextFn, game, items)
+      local output = nextFn(game, items)
+      if type(output) ~= "table" then return output end
+      local allowed = SpoilerController.canAccess(lifecycle:activeRun())
+      if not allowed then return output end
+      local anchor = "QUIT"
+      for _, item in ipairs(output) do
+        if item.label == "MODS" then
+          anchor = "MODS"
+          break
+        end
+      end
+      mod.ui.insertBefore(output, anchor, {
+        label = "SPOILER",
+        onSelect = function()
+          return viewSpoilersFromStart(game)
+        end,
+      })
+      return output
+    end)
+
+    mod.hooks:wrap("encounter.species",
+      function(nextFn, encounter, context)
+        local resolved = nextFn(encounter, context)
+        return WildRuntime.resolve(
+          resolved, context, lifecycle:activeRun())
+      end)
+
+    mod.hooks:wrap("encounter.roll",
+      function(nextFn, encounterDefinition, context)
+        return WildRuntime.roll(
+          nextFn, encounterDefinition, context, lifecycle:activeRun())
+      end)
+
+    mod.hooks:wrap("encounter.fishing",
+      function(nextFn, rod, mapId, candidates)
+        local encounter = nextFn(rod, mapId, candidates)
+        return WildRuntime.fishing(
+          encounter, rod, mapId, candidates, lifecycle:activeRun())
+      end)
+
+    mod.hooks:wrap("trainer.party",
+      function(nextFn, oppClass, partyIndex, party)
+        local resolved = nextFn(oppClass, partyIndex, party)
+        resolved = TrainerRuntime.party(
+          resolved, oppClass, partyIndex, lifecycle:activeRun())
+        return StarterRuntime.party(
+          resolved, oppClass, partyIndex, lifecycle:activeRun())
+      end)
+
+    mod.migrations:add(Constants.FIRST_MIGRATION_VERSION, function(namespace)
+      local migrated = SaveState.migrate(namespace)
+      if migrated == namespace then return end
+      if type(migrated.settings) == "table"
+          and type(migrated.compatibility) == "table" then
+        migrated.compatibility.settingsHash =
+          SaveState.hashBehaviorSettings(migrated.settings)
+      end
+      local stamped, errors = SaveState.stamp(migrated)
+      if not stamped then
+        error(("schema migration failed validation (%d issue%s)"):format(
+          #errors, #errors == 1 and "" or "s"))
+      end
+      for key in pairs(namespace) do namespace[key] = nil end
+      for key, value in pairs(stamped) do namespace[key] = value end
+    end)
+
+    mod.migrations:add(
+      Constants.SETTINGS_HASH_MIGRATION_VERSION, function(namespace)
+        if type(namespace) ~= "table"
+            or namespace.schemaVersion ~= Constants.SAVE_SCHEMA_VERSION
+            or type(namespace.settings) ~= "table"
+            or type(namespace.compatibility) ~= "table" then
+          return
+        end
+        local migrated = SaveState.clone(namespace)
+        migrated.compatibility.settingsHash =
+          SaveState.hashBehaviorSettings(migrated.settings)
+        local stamped, errors = SaveState.stamp(migrated)
+        if not stamped then
+          error(("settings-hash migration failed validation (%d issue%s)")
+            :format(#errors, #errors == 1 and "" or "s"))
+        end
+        for key in pairs(namespace) do namespace[key] = nil end
+        for key, value in pairs(stamped) do namespace[key] = value end
+      end)
+
+    mod.migrations:add(
+      Constants.FIELD_ITEM_MIGRATION_VERSION, function(namespace)
+        if type(namespace) ~= "table"
+            or namespace.schemaVersion ~= Constants.SAVE_SCHEMA_VERSION
+            or type(namespace.settings) ~= "table"
+            or type(namespace.compatibility) ~= "table"
+            or type(namespace.mappings) ~= "table" then
+          return
+        end
+        local migrated = SaveState.clone(namespace)
+        if migrated.settings.field_items == nil then
+          migrated.settings.field_items = "off"
+        end
+        if type(migrated.mappings.fieldItems) ~= "table" then
+          migrated.mappings.fieldItems = {}
+        end
+        migrated.compatibility.settingsHash =
+          SaveState.hashBehaviorSettings(migrated.settings)
+        local stamped, errors = SaveState.stamp(migrated)
+        if not stamped then
+          error(("field-item migration failed validation (%d issue%s)")
+            :format(#errors, #errors == 1 and "" or "s"))
+        end
+        for key in pairs(namespace) do namespace[key] = nil end
+        for key, value in pairs(stamped) do namespace[key] = value end
+      end)
+
+    mod.migrations:add(
+      Constants.MECHANICS_MIGRATION_VERSION, function(namespace)
+        if type(namespace) ~= "table"
+            or namespace.schemaVersion ~= Constants.SAVE_SCHEMA_VERSION
+            or type(namespace.settings) ~= "table"
+            or type(namespace.compatibility) ~= "table"
+            or type(namespace.mappings) ~= "table" then
+          return
+        end
+        local migrated = SaveState.clone(namespace)
+        local defaults = {
+          base_stats = "vanilla", stat_family_consistency = "on",
+          evolutions = "vanilla", evolution_repeats = "avoid",
+          evolution_trade_safety = "vanilla",
+          pokemon_types = "vanilla", type_family_consistency = "on",
+          pokemon_movesets = "vanilla", early_damage = "on",
+          learnset_levels = "vanilla", tmhm_compatibility = "vanilla",
+          move_types = "vanilla", move_data = "vanilla",
+          move_safety = "on",
+        }
+        for key, value in pairs(defaults) do
+          if migrated.settings[key] == nil then migrated.settings[key] = value end
+        end
+        migrated.mappings.pokemonMechanics =
+          type(migrated.mappings.pokemonMechanics) == "table"
+            and migrated.mappings.pokemonMechanics or {}
+        migrated.mappings.moveData =
+          type(migrated.mappings.moveData) == "table"
+            and migrated.mappings.moveData or {}
+        migrated.compatibility.settingsHash =
+          SaveState.hashBehaviorSettings(migrated.settings)
+        local stamped, errors = SaveState.stamp(migrated)
+        if not stamped then
+          error(("mechanics migration failed validation (%d issue%s)")
+            :format(#errors, #errors == 1 and "" or "s"))
+        end
+        for key in pairs(namespace) do namespace[key] = nil end
+        for key, value in pairs(stamped) do namespace[key] = value end
+      end)
+
+    -- Recomp constructs a disposable New Game-shaped save during boot so
+    -- title-screen systems have options and player defaults available.  It
+    -- emits save.created for that skeleton before game.ready, then emits a
+    -- second save.created only when the player actually chooses NEW GAME.
+    -- Generating on the boot event made the title-screen options report
+    -- LOCKED after every application restart, even when nothing was saved.
+    local gameReady = false
+    local activeGame
+    local pendingNewGameSave
+    local bootSuppressionLogged = false
+    mod.events:on("game.ready", function(event)
+      gameReady = true
+      activeGame = type(event) == "table" and event.game or activeGame
+      if activeGame then
+        ItemRuntime.capture(activeGame)
+        MechanicsRuntime.capture(activeGame)
+      end
+    end)
+    mod.events:on("save.created", function(event)
+      if not gameReady then
+        if not bootSuppressionLogged then
+          bootSuppressionLogged = true
+          if type(mod.log.debug) == "function" then
+            mod.log:debug(
+              "suppressed disposable pre-game.ready save.created boot skeleton")
+          end
+        end
+        return
+      end
+      pendingNewGameSave = event.save
+    end)
+    mod.hooks:wrap("intro.oak_speech.build",
+      function(nextFn, steps, speech)
+        local output = nextFn(steps, speech)
+        if type(output) ~= "table" or type(speech) ~= "table"
+            or type(speech.game) ~= "table" then
+          return output
+        end
+        local game = speech.game
+        local save = pendingNewGameSave
+        if type(save) ~= "table" or game.save ~= save then return output end
+        mod.ui.insertStepBefore(output, "oak_welcome", {
+          id = "pokemon_randomizer:new_game_setup",
+          kind = "fn",
+          run = function(_, done)
+            local completed = false
+            local function finishSetup(enabled)
+              if completed or pendingNewGameSave ~= save then return end
+              completed = true
+              pendingNewGameSave = nil
+              local settings = preferences:snapshot(game)
+              settings.randomizer = enabled and "on" or "off"
+              lifecycle:onCreated({ save = save, settings = settings })
+              local run = lifecycle:activeRun()
+              ItemRuntime.initializeSave(save, run)
+              MechanicsRuntime.apply(game, run)
+              ItemRuntime.apply(game, run)
+              done()
+            end
+            local ok, err = pcall(NewGameSetup.start, {
+              game = game,
+              ui = mod.ui,
+              preferences = preferences,
+              openSettings = function(onDone)
+                mod.ui.push(game, Constants.OPTIONS_SCREEN_ID, {
+                  onboarding = true,
+                  onDone = onDone,
+                })
+              end,
+              complete = finishSetup,
+            })
+            if not ok then
+              mod.log:error("New Game setup failed: %s", tostring(err))
+              finishSetup(false)
+            end
+          end,
+        })
+        return output
+    end)
+    mod.events:on("save.loading", function(event)
+      pendingNewGameSave = nil
+      lifecycle:onLoading(event)
+      local namespace = type(event) == "table" and type(event.raw) == "table"
+        and event.raw.modData and event.raw.modData[Constants.MOD_ID]
+      if activeGame then
+        local valid = type(namespace) == "table"
+          and SaveState.validate(namespace, nil, true)
+        local run = valid and namespace.enabled and namespace or nil
+        MechanicsRuntime.apply(activeGame, run)
+        ItemRuntime.apply(activeGame, run)
+      end
+    end)
+    mod.events:on("save.loaded", function(event)
+      lifecycle:onLoaded(event)
+      if activeGame then
+        -- save.loaded is authoritative after validation and migration. Reapply
+        -- from the pristine baseline so repeated loads and quarantined saves
+        -- cannot retain mechanics from the previously active run.
+        MechanicsRuntime.apply(activeGame, lifecycle:activeRun())
+      end
+    end)
+    mod.events:on("save.writing", function(event)
+      lifecycle:onWriting(event)
+    end)
+    mod.events:on("battle.ended", function(event)
+      if not activeGame then return end
+      local run = lifecycle:activeRun()
+      ItemRuntime.prepareBattleRewards(event, run)
+      ItemRuntime.afterBattle(activeGame, run, mod.world)
+    end)
+
+    mod.events:once("mods.loaded", function()
+      for _, diagnostic in ipairs(Species.Metadata:diagnostics()) do
+        mod.log:warn(
+          "%s species=%s field=%s policy=%s resolved=%s",
+          diagnostic.code, diagnostic.species, diagnostic.field,
+          diagnostic.policy, tostring(diagnostic.resolved))
+      end
+      Species.Metadata:freeze()
+      mod.log:info(
+        "milestone 14 ready (contract=%d, save=%d, species=%d, hash=%s, prng=%s)",
+        Constants.CONTRACT_VERSION,
+        Constants.SAVE_SCHEMA_VERSION,
+        Constants.SPECIES_MANIFEST_VERSION,
+        Constants.HASH_VERSION,
+        Constants.PRNG_VERSION)
+    end)
+
+    return publicApi
+  end
+
+  return Bootstrap
+end

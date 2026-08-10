@@ -1,0 +1,39 @@
+-- Sharing metadata, read by tooling and the manager detail pane only.
+return {
+  summary = "Grades your party against the foe on the switch screen.",
+  author = "allanrmartins",
+  contact = "https://github.com/allanrmartins/gen1recomp-switch-advisor",
+  tags = { "quality-of-life", "ui", "battle", "beginner" },
+  differences = {
+    changed = {
+      "the battle party menu prints a one-letter grade (A/B/D/E) for every "
+        .. "living mon, scored against the foe on the field",
+      "a mon the foe's own types hit super effectively also gets a ! flag",
+      "a caught POKeMON goes straight to the party or the box, with no "
+        .. "\"Do you want to give a nickname?\" prompt",
+    },
+    added = {
+      "three toggles in the mod's options pane: PARTY GRADES, DANGER FLAG "
+        .. "and SKIP NICKNAME, all on by default and all live (no restart)",
+    },
+    known = {
+      "the grade is a type-chart heuristic only: levels, stats, held "
+        .. "status and the foe's actual moves are not weighted in",
+      "the foe's move list is deliberately not read, so a foe carrying "
+        .. "off-type coverage can still surprise a mon graded A",
+      "an average matchup prints nothing at all, so a blank column means "
+        .. "\"no strong opinion\", not \"not computed\"",
+      "letters, not arrows: the Gen 1 font has no < or > glyph, and the "
+        .. "two triangles it does have are already the party cursor and "
+        .. "the swap arrow",
+      "the marker is capped at two glyphs because that is the whole free "
+        .. "space on a party row (x=24..40 of the HP line)",
+      "SKIP NICKNAME only covers the capture prompt; the PC's rename "
+        .. "screen is untouched, so renaming later still works",
+      "the party menu outside a battle is untouched, since there is no "
+        .. "foe to grade against",
+    },
+  },
+  credits = {},
+  compat = { engine = ">=1.0.0 <2.0.0", modApi = 2 },
+}

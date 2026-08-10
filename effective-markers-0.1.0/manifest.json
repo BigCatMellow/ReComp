@@ -1,0 +1,17 @@
+{
+  "id": "effective-markers",
+  "name": "Effective Markers",
+  "version": "0.1.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "game_version": ">=0.0.0-dev <1.0.0",
+  "category": "UI",
+  "priority": 100,
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "incompatible": [],
+  "experimental": false,
+  "description": "A type-effectiveness icon next to the selected move in the FIGHT menu."
+}

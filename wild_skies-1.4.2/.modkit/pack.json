@@ -1,0 +1,70 @@
+{
+  "modkit": "1.0.0",
+  "packed_at": "2026-08-08T20:33:51Z",
+  "id": "wild_skies",
+  "version": "1.4.2",
+  "api": 2,
+  "engine_range": "0.0.0-dev || >=0.1.0 <2.0.0",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 7793,
+      "sha256": "2dc483e01c35d2c09f87dbe6fb71739d1be27da15860f9abf0032af393e8261d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4369,
+      "sha256": "49ae1f6a8f1ea6d17178549e171e6c5f79f26adff8629e1901cfc1d1b380fe84"
+    },
+    {
+      "path": "lib/shared/skylib.lua",
+      "bytes": 7768,
+      "sha256": "4104683d36a97347cff2cfb0674e0da0c0e6a772316ef5e60f6637d7d0c22c2f"
+    },
+    {
+      "path": "main.lua",
+      "bytes": 39598,
+      "sha256": "7212ab108bee2bfd9d87b482e7b00e7030e4276344c715f34620e7f9de3c79d2"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 511,
+      "sha256": "678aa803d4c6d36294aeabba453500529aac14fdf89ef3fdbccec39226ad92bb"
+    },
+    {
+      "path": "mod.card",
+      "bytes": 639,
+      "sha256": "c02ac895ebd53bc6a7045dfdf6686669962cabe2b8f619a083fcbab0d36afd64"
+    },
+    {
+      "path": "tests/skylib_sources_test.lua",
+      "bytes": 4619,
+      "sha256": "52c355f77933a56cb7ac740a0537d8c4065de03abbd4fd85e296247024b85a25"
+    },
+    {
+      "path": "tests/wild_skies_encounter_attribution_test.lua",
+      "bytes": 5002,
+      "sha256": "c2c70f46541d1bb96cd3cdfd3b4565e0e5105fe92e02cd1adfab7513daa6ff21"
+    },
+    {
+      "path": "tests/wild_skies_exports_test.lua",
+      "bytes": 1119,
+      "sha256": "eca82243ab0f3d9237ef93122af10670038b1da5ba8aad6ff9cbdb53fe0c08fb"
+    },
+    {
+      "path": "tests/wild_skies_load_test.lua",
+      "bytes": 710,
+      "sha256": "35f6bfb77344a02912354a5c7d5adbc87a5b479c745c11d827ea0c3c828b0a84"
+    },
+    {
+      "path": "tests/wild_skies_summon_test.lua",
+      "bytes": 3335,
+      "sha256": "0974d384e35c586df27f711e5f0773e77e2e84662359b628afa59791ca84b503"
+    }
+  ],
+  "lint": {
+    "no_rom_content": "pass",
+    "schema": "pass",
+    "cross_refs": "pass"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "modkit": "1.0.0",
+  "packed_at": "2026-08-05T21:51:39Z",
+  "id": "gen3_box",
+  "version": "1.5.2",
+  "api": 2,
+  "engine_range": ">=0.0.0-0 <2.0.0",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 9026,
+      "sha256": "0a94310d74bbaadd83c14f4d142d523cf46b06a7ec7f5150a66a5603d1b2bbc3"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1067,
+      "sha256": "f8db0a61639b83858b1159df29e8229c2e65115398570a5422226cd80074646c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7432,
+      "sha256": "c4ff1042b8f0709605047ceb6c2b3b7979e301fbdcfad9a4c8d1278cc9861d6f"
+    },
+    {
+      "path": "main.lua",
+      "bytes": 26303,
+      "sha256": "7659c49a7657c0adf685953eb1b062d2f054065d938b390b418ac3afe13f72c1"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 1035,
+      "sha256": "10e19ad379c4f9fc6ebd08a8f8b1f29515820c0d712f7efff90e66e8fa3db678"
+    },
+    {
+      "path": "mod.card",
+      "bytes": 2672,
+      "sha256": "277a00f6a0c4f4e58263c816678f672953eba4b7b5d2d9a1818a6fa377e3a568"
+    }
+  ],
+  "lint": {
+    "no_rom_content": "pass",
+    "schema": "pass",
+    "cross_refs": "pass"
+  }
+}

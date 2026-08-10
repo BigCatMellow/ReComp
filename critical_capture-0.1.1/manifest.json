@@ -1,0 +1,18 @@
+{
+  "id": "critical_capture",
+  "name": "Critical Capture",
+  "version": "0.1.1",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "GAMEPLAY",
+  "priority": 100,
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "permissions": [
+    "engine_internals"
+  ],
+  "description": "Gen 5's critical capture: a thrown ball can whistle, pause and shudder in mid-air, then shake once with far better odds. The chance scales with your Pokedex completion, rescaled from the modern 600+ dex to Gen 1's 151 species. OPTIONS > CRIT CAPTURE cycles OFF / GEN 5 / GEN 6.",
+  "github": "ShaneMcGovernIE/critical_capture"
+}

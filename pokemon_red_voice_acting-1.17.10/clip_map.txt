@@ -1,0 +1,1273 @@
+Pokémon Red Voice Acting v1.17.9
+
+01  oak_intro_001_hello_there.ogg
+    Hello there!
+
+02  oak_intro_002_welcome.ogg
+    Welcome to the world of POKéMON!
+
+03  oak_intro_003_my_name_is_oak.ogg
+    My name is OAK!
+
+04  oak_intro_004_pokemon_professor.ogg
+    People call me the POKéMON PROFESSOR.
+
+05  oak_intro_005_world_inhabited.ogg
+    This world is inhabited by creatures called POKéMON!
+
+06  oak_intro_006_pokemon_are_pets.ogg
+    For some people, POKéMON are pets.
+
+07  oak_intro_007_others_use_for_fights.ogg
+    Others use them for fights.
+
+08  oak_intro_008_study_as_profession.ogg
+    Myself, I study POKéMON as a profession.
+
+09  oak_intro_009_ask_player_name.ogg
+    First, what is your name?
+
+10  oak_intro_010_introduce_rival.ogg
+    This is my grandson. He's been your rival since you were a baby.
+
+11  oak_intro_011_ask_rival_name.ogg
+    Erm, what was his name again?
+
+12  oak_intro_012_legend_unfolds.ogg
+    Your very own POKéMON adventure is about to unfold.
+
+13  oak_intro_013_adventures_await.ogg
+    A world of dreams and adventures with POKéMON awaits. Let's go!
+
+14  mom_reds_house_001_leave_home.ogg
+    Right! All boys leave home some day.
+
+15  mom_reds_house_002_saw_on_tv.ogg
+    It said so on TV.
+
+16  mom_reds_house_003_oak_looking_for_you.ogg
+    Professor Oak next door is looking for you.
+
+17  girl_pallet_001_raising_pokemon.ogg
+    I'm raising POKéMON too!
+
+18  girl_pallet_002_protection.ogg
+    When they get strong, they can protect me!
+
+19  man_pallet_001_technology.ogg
+    Technology is amazing!
+
+20  man_pallet_002_pc_storage.ogg
+    You can now store and recall items and POKéMON as data via PC!
+
+v1.3.1 FIX
+The Pallet Town girl and fisherman use extracted map text constants:
+TEXT_PALLETTOWN_GIRL
+TEXT_PALLETTOWN_FISHER
+
+They are now voiced through OverworldState:showMapText.
+
+21  aide_oaks_lab_001_oak_assistant.ogg
+    I study POKéMON as Professor Oak's aide.
+    Used by both scientist aides.
+
+22  girl_oaks_lab_001_oak_authority.ogg
+    Professor Oak is the authority on POKéMON.
+
+23  girl_oaks_lab_002_high_regard.ogg
+    Many POKéMON trainers hold him in high regard.
+
+24  rival_oaks_lab_001_gramps_absent.ogg
+    Yo! Gramps isn't around.
+
+v1.4.1 FIX
+Dialogue routing now uses stable object indices:
+Pallet Town: 2 girl, 3 technology enthusiast
+Oak's Lab: 1 early rival, 9 girl, 10 and 11 aides
+
+v1.4.2 AUDIO UPDATE
+All 24 voice clips use gentle speech leveling and are normalized to approximately:
+-20 LUFS integrated
+-1.5 dB maximum true peak
+44.1 kHz mono OGG Vorbis
+
+VOICE VOLUME is available under this mod's options:
+0 = mute
+10 = full volume
+
+25  daisy_rivals_house_001_brother_at_lab.ogg
+    Hi! My brother is out at Grandpa's lab.
+    Trigger: _BluesHouseDaisyRivalAtLabText
+    State: before receiving the Pokédex/Town Map.
+
+26  oak_pallet_001_hey_wait.ogg
+    Hey! Wait!
+    Trigger: _PalletTownOakHeyWaitDontGoOutText
+
+27  oak_pallet_002_unsafe_tall_grass.ogg
+    It's unsafe! Wild POKéMON live in tall grass.
+
+28  oak_pallet_003_need_protection.ogg
+    You need your own POKéMON for your protection.
+
+29  oak_pallet_004_come_with_me.ogg
+    I know! Here, come with me.
+
+The last three clips replace the multi-page
+_PalletTownOakItsUnsafeText box while preserving the original escort callback.
+
+30  rival_oaks_lab_002_fed_up_waiting.ogg
+    Gramps! I'm fed up with waiting.
+
+31  oak_oaks_lab_001_let_me_think.ogg
+    Let me think.
+
+32  oak_oaks_lab_002_told_you_to_come.ogg
+    Oh, that's right. I told you to come. Just wait.
+
+33  oak_oaks_lab_003_haha.ogg
+    Haha!
+
+34  oak_oaks_lab_004_inside_pokeballs.ogg
+    They are inside the Poké Balls.
+
+35  oak_oaks_lab_005_serious_trainer.ogg
+    When I was young, I was a serious Pokémon trainer.
+
+36  oak_oaks_lab_006_only_three_left.ogg
+    In my old age, I only have three left, but you can have one. Choose.
+
+37  oak_oaks_lab_007_be_patient.ogg
+    Be patient. You can have one too.
+
+Still unvoiced in this scene:
+- Here, {PLAYER}! There are three Pokémon here.
+- Rival: Hey! Gramps! What about me?
+
+38  oak_oaks_lab_007_three_pokemon_here.ogg
+    Here! There are three Pokémon here.
+    The recording avoids the dynamic player name.
+
+39  rival_oaks_lab_003_what_about_me.ogg
+    Hey! Gramps! What about me?
+
+40  oak_oaks_lab_008_confirm_charmander.ogg
+    So! You want the fire Pokémon, Charmander?
+    Trigger: _OaksLabYouWantCharmanderText
+
+41  oak_oaks_lab_009_confirm_squirtle.ogg
+    So! You want the water Pokémon, Squirtle?
+    Trigger: _OaksLabYouWantSquirtleText
+
+42  oak_oaks_lab_010_confirm_bulbasaur.ogg
+    So! You want the plant Pokémon, Bulbasaur?
+    Trigger: _OaksLabYouWantBulbasaurText
+
+Each voiced text box is followed by the original Yes/No choice.
+The starter Pokédex preview and selection logic remain unchanged.
+
+43  oak_oaks_lab_011_which_pokemon.ogg
+    Now, which Pokémon do you want?
+    Trigger: _OaksLabOak1WhichPokemonDoYouWantText
+    Plays when speaking to Oak before choosing a starter.
+
+44  oak_oaks_lab_012_dont_go_away.ogg
+    Hey! Don't go away yet!
+    Trigger: _OaksLabOakDontGoAwayYetText
+    Plays when trying to leave the laboratory without a starter.
+
+45  rival_oaks_lab_004_go_ahead_choose.ogg
+    Heh! I don't need to be greedy like you! Go ahead and choose!
+    Trigger: _OaksLabRivalGoAheadAndChooseText
+    Plays when speaking to the rival before choosing a starter.
+
+46  rival_oaks_lab_005_take_this_one.ogg
+    I'll take this one, then!
+    Trigger: _OaksLabRivalIllTakeThisOneText
+    Plays when the rival takes the counter-starter.
+
+47  rival_oaks_lab_006_looks_stronger.ogg
+    My Pokémon looks a lot stronger.
+    Trigger: _OaksLabRivalMyPokemonLooksStrongerText
+    Plays when speaking to the rival before the laboratory battle.
+
+48  oak_oaks_lab_013_can_fight_wild_pokemon.ogg
+    If a wild Pokémon appears, your Pokémon can fight against it.
+    Trigger: _OaksLabOak1YourPokemonCanFightText
+    Plays when speaking to Oak after choosing a starter but before battling.
+
+49  rival_oaks_lab_007_wait.ogg
+    Wait!
+
+50  rival_oaks_lab_008_check_pokemon.ogg
+    Let's check out our Pokémon!
+
+51  rival_oaks_lab_009_take_you_on.ogg
+    Come on! I'll take you on!
+
+Trigger for all three:
+_OaksLabRivalIllTakeYouOnText
+
+The original rival battle begins only after the third voiced box closes.
+
+52  rival_oaks_lab_010_what_unbelievable.ogg
+    What? Unbelievable!
+    Win-only trigger: _OaksLabRivalIPickedTheWrongPokemonText
+
+53  rival_oaks_lab_011_wrong_pokemon.ogg
+    I picked the wrong Pokémon!
+    Win-only trigger: _OaksLabRivalIPickedTheWrongPokemonText
+
+54  rival_oaks_lab_012_am_i_great.ogg
+    Yeah! Am I great or what?
+    Loss-only trigger: in-battle _Rival1WinText queue message
+
+55  rival_oaks_lab_013_toughen_it_up.ogg
+    Okay! I'll make my Pokémon fight to toughen it up.
+    Shared win/loss trigger: _OaksLabRivalSmellYouLaterText
+
+Still unvoiced:
+- Player! Gramps! Smell you later!
+
+56  rival_oaks_lab_014_smell_ya_later.ogg
+    Gramps! Smell ya later!
+    Second page of: _OaksLabRivalSmellYouLaterText
+    The recording avoids the dynamic player name.
+
+57  oak_oaks_lab_014_raise_young_pokemon.ogg
+    Raise your young Pokémon by making it fight!
+    Trigger: _OaksLabOak1RaiseYourYoungPokemonText
+    Oak's final early-game advice before leaving the laboratory.
+
+58  daisy_rivals_house_002_grandpa_errand.ogg
+    Grandpa asked you to run an errand?
+
+59  daisy_rivals_house_003_map_will_help.ogg
+    Here, this will help you!
+
+Town Map handover trigger for clips 58–59:
+_BluesHouseDaisyOfferMapText
+
+The original Town Map item-receipt notification and sound remain unchanged.
+
+60  daisy_rivals_house_004_use_town_map.ogg
+    Use the Town Map to find out where you are.
+    Trigger: _BluesHouseDaisyUseMapText
+    Plays when speaking to Daisy after receiving the map.
+
+61  mom_reds_house_004_quick_rest.ogg
+    You should take a quick rest.
+    Trigger: _RedsHouse1FMomYouShouldRestText
+    Plays before the party-healing action.
+
+62  mom_reds_house_005_looking_great.ogg
+    Oh, good! You and your Pokémon are looking great!
+    Trigger: _RedsHouse1FMomLookingGreatText
+    Plays after the party has been healed.
+
+The original healing effect, jingle and script flow remain unchanged.
+
+63  mom_reds_house_006_take_care_now.ogg
+    Take care now!
+    Second page of: _RedsHouse1FMomLookingGreatText
+
+64  daisy_rivals_house_005_pokemon_need_rest.ogg
+    Pokémon are living things! If they get tired, give them a rest!
+    Trigger: _BluesHouseDaisyWalkingText
+
+v1.11.2 OPTIONS CHANGE
+----------------------
+VOICE VOLUME has moved from the individual mod-manager settings page to the
+game's main Options menu, directly below SFX VOL.
+
+Range:
+- OFF / 0 = muted
+- 1–9 = reduced volume
+- 10 = full normalized voice volume
+
+The setting is stored with the game's standard options and applies immediately
+to any voice clip already playing.
+
+ROUTE 1 — v1.12.0
+------------------
+
+65  route1_mart_worker_001_work_at_mart.ogg
+    Hi! I work at a Pokémon Mart.
+
+66  route1_mart_worker_002_visit_viridian.ogg
+    It's a convenient shop, so please visit us in Viridian City.
+
+67  route1_mart_worker_003_free_sample.ogg
+    I know, I'll give you a sample! Here you go!
+
+Trigger for clips 65–67:
+_Route1Youngster1MartSampleText
+
+The original script still awards the Potion after this dialogue. Its item
+notification and acquisition sound remain unchanged.
+
+68  route1_mart_worker_004_carry_pokeballs.ogg
+    We also carry Poké Balls for catching Pokémon!
+    Trigger: _Route1Youngster1AlsoGotPokeballsText
+    Plays on later conversations after the Potion-sample event is set.
+
+69  route1_ledge_youngster_001_see_ledges.ogg
+    See those ledges along the road?
+
+70  route1_ledge_youngster_002_jump_from_them.ogg
+    It's a bit scary, but you can jump from them.
+
+71  route1_ledge_youngster_003_quicker_to_pallet.ogg
+    You can get back to Pallet Town quicker that way.
+
+Trigger for clips 69–71:
+_Route1Youngster2Text
+
+Intentionally unvoiced:
+_Route1Youngster1NoRoomText
+    You have too much stuff with you!
+    Rare branch used only when the Bag is full during the Potion handover.
+
+Environmental/system text remains unvoiced:
+- Route 1 sign
+- Potion item-receipt notification
+
+v1.12.1 ROUTE 1 FIX
+-------------------
+Route 1 dialogue now resolves through both:
+1. the exact imported text-resource key; and
+2. the resolved in-game text content when the hand-ported script uses a
+   different/generated key.
+
+The active dialogue table is also refreshed when this replacement version is
+loaded, preventing a previous mod version's wrapper closure from retaining the
+older Route 1-less mapping.
+
+A side-effect-free object-index fallback is included for Route 1 object 2
+(the ledge youngster).
+
+Route 1 object 1 (the Poké Mart worker) is NOT replaced at showMapText level.
+His original hand-ported script continues to control:
+- EVENT_GOT_POTION_SAMPLE
+- awarding the Potion
+- Bag-full handling
+- the item notification and jingle
+
+v1.12.2 ROUTE 1 MART-WORKER FIX
+--------------------------------
+The Route 1 Poké Mart worker is a text_asm interaction. His dialogue is
+displayed through nested PrintText calls after the map interaction has already
+entered the Potion script.
+
+The mod now detects the final resolved TextBox content:
+
+First conversation:
+1. Hi! I work at a Pokémon Mart.
+2. It's a convenient shop, so please visit us in Viridian City.
+3. I know, I'll give you a sample! Here you go!
+
+After page 3 closes, the original script resumes and handles:
+- EVENT_GOT_POTION_SAMPLE
+- awarding the Potion
+- the Bag-full result
+- the item receipt message and jingle
+
+Repeat conversation:
+- We also carry Poké Balls for catching Pokémon!
+
+The rare Bag-full spoken response remains original and unvoiced.
+
+VIRIDIAN POKé MART — v1.13.0
+----------------------------
+
+72  viridian_mart_clerk_001_came_from_pallet.ogg
+    Hey! You came from Pallet Town?
+    Trigger: _ViridianMartClerkYouCameFromPalletTownText
+    Runs automatically when entering the Mart with a starter and no Parcel.
+
+The original script then moves the player:
+- up two tiles
+- left one tile
+- facing the clerk at the counter
+
+73  viridian_mart_clerk_002_know_professor_oak.ogg
+    You know Professor Oak, right?
+
+74  viridian_mart_clerk_003_take_order_to_oak.ogg
+    His order came in. Will you take it to him?
+
+Trigger for clips 73–74:
+_ViridianMartClerkParcelQuestText
+
+The final page remains unvoiced system text:
+- <PLAYER> got OAK's PARCEL!
+
+The original Commands.give_item path remains responsible for:
+- adding OAKS_PARCEL to the Bag
+- Bag-full rejection
+- the dynamic player-name receipt
+- the key-item jingle
+- EVENT_GOT_OAKS_PARCEL after the handover completes
+
+75  viridian_mart_clerk_004_say_hi_to_oak.ogg
+    Okay! Say hi to Professor Oak for me!
+    Trigger: _ViridianMartClerkSayHiToOakText
+    Plays when speaking to the clerk after receiving the Parcel but before
+    delivering it to Professor Oak.
+
+OAK'S PARCEL AND POKéDEX EXCHANGE — v1.14.0
+===========================================
+
+76  oak_parcel_001_old_pokemon.ogg
+    Oh, <PLAYER>! How is my old Pokémon?
+
+77  oak_parcel_002_seems_to_like_you.ogg
+    Well, it seems to like you a lot.
+
+78  oak_parcel_003_talented_trainer.ogg
+    You must be talented as a Pokémon trainer!
+
+79  oak_parcel_004_something_for_me.ogg
+    What? You have something for me?
+
+Trigger for clips 76–79:
+_OaksLabOak1DeliverParcelText
+
+Final system page remains unvoiced:
+- <PLAYER> delivered OAK's PARCEL.
+
+The original script then plays the key-item sound.
+
+80  oak_parcel_005_custom_pokeball.ogg
+    Ah! This is the custom Poké Ball I ordered! Thank you!
+    Trigger: _OaksLabOak1ParcelThanksText
+
+The original script then removes OAKS_PARCEL and begins the rival-arrival
+sequence.
+
+81  rival_pokedex_001_gramps.ogg
+    Gramps!
+    Trigger: _OaksLabRivalGrampsText
+
+82  rival_pokedex_002_what_called_for.ogg
+    What did you call me for?
+    Trigger: _OaksLabRivalWhatDidYouCallMeForText
+
+83  oak_pokedex_001_request_of_you_two.ogg
+    Oh right! I have a request of you two.
+    Trigger: _OaksLabOakIHaveARequestText
+
+84  oak_pokedex_002_invention_pokedex.ogg
+    On the desk there is my invention, Pokédex!
+
+85  oak_pokedex_003_records_data.ogg
+    It automatically records data on Pokémon you've seen or caught!
+
+86  oak_pokedex_004_high_tech_encyclopedia.ogg
+    It's a hi-tech encyclopedia!
+
+Trigger for clips 84–86:
+_OaksLabOakMyInventionPokedexText
+
+87  oak_pokedex_005_take_these.ogg
+    <PLAYER> and <RIVAL>! Take these with you!
+    Trigger: _OaksLabOakGotPokedexText
+
+Final system page remains unvoiced:
+- <PLAYER> got POKéDEX from OAK!
+
+The original script then plays the key-item sound and hides both Pokédex
+objects from Oak's desk.
+
+88  oak_dream_002_complete_guide.ogg
+    To make a complete guide on all the Pokémon in the world...
+
+89  oak_dream_001_that_was_my_dream.ogg
+    That was my dream!
+
+90  oak_dream_003_too_old.ogg
+    But, I'm too old! I can't do it!
+
+91  oak_dream_004_fulfill_my_dream.ogg
+    So, I want you two to fulfill my dream for me!
+
+92  oak_dream_005_get_moving.ogg
+    Get moving, you two!
+
+93  oak_dream_006_great_undertaking.ogg
+    This is a great undertaking in Pokémon history!
+
+Trigger for clips 88–93:
+_OaksLabOakThatWasMyDreamText
+
+94  rival_pokedex_003_leave_it_to_me.ogg
+    Alright Gramps! Leave it all to me!
+
+95  rival_pokedex_004_dont_need_you.ogg
+    <PLAYER>, I hate to say it, but I don't need you!
+
+96  rival_pokedex_005_borrow_town_map.ogg
+    I know! I'll borrow a Town Map from my sis!
+
+97  rival_pokedex_006_dont_lend_one.ogg
+    I'll tell her not to lend you one, <PLAYER>! Hahaha!
+
+Trigger for clips 94–97:
+_OaksLabRivalLeaveItAllToMeText
+
+After the final page, the original hand-ported script:
+- sets EVENT_GOT_POKEDEX
+- sets EVENT_OAK_GOT_PARCEL
+- wakes the Viridian City old man
+- moves and hides the rival
+- arms the first Route 22 rival encounter
+- leaves Daisy's Town Map sequence available
+
+FINAL PALLET TOWN / ROUTE 1 LINE — v1.14.1
+==========================================
+
+98  oak_pokedex_006_pokemon_around_world.ogg
+    Pokémon around the world wait for you, <PLAYER>!
+    Trigger: _OaksLabOak1PokemonAroundTheWorldText
+
+This is Oak's repeat dialogue after EVENT_GOT_POKEDEX is set. The supplied
+recording omits the dynamic player name; the displayed game text retains it.
+
+This completes the intended Pallet Town and Route 1 voice set through:
+- Oak's Parcel delivery
+- the Pokédex exchange
+- Daisy's Town Map dialogue
+- Oak's immediate post-Pokédex repeat line
+
+POKéMON CENTER NURSE — v1.15.0
+==============================
+
+99  pokemon_center_nurse_001_welcome.ogg
+    Welcome to our Pokémon Center!
+
+100 pokemon_center_nurse_002_perfect_health.ogg
+    We heal your Pokémon back to perfect health!
+
+Shared source:
+_PokemonCenterWelcomeText
+
+The first-use-only prompt is now voiced:
+- Shall we heal your Pokémon?
+
+The Yes/No menu remains unchanged.
+
+YES PATH
+--------
+101 pokemon_center_nurse_003_need_pokemon.ogg
+    OK. We'll need your Pokémon.
+    Source: _NeedYourPokemonText
+
+The original routine then records the blackout location, restores party HP/PP,
+turns the nurse toward the machine, and runs the healing animation and sound.
+
+102 pokemon_center_nurse_004_fighting_fit.ogg
+    Thank you! Your Pokémon are fighting fit!
+    Source: _PokemonFightingFitText
+
+YES AND NO PATHS
+----------------
+103 pokemon_center_nurse_005_see_you_again.ogg
+    We hope to see you again!
+    Source: _PokemonCenterFarewellText
+
+Choosing No skips clips 101–102 and proceeds directly to clip 103.
+These voices apply to every standard Pokémon Center using the shared routine.
+
+POKéMON CENTER FIRST-VISIT PROMPT — v1.15.1
+===========================================
+
+104 pokemon_center_nurse_006_shall_we_heal.ogg
+    Shall we heal your Pokémon?
+    Source: _ShallWeHealYourPokemonText
+
+This prompt appears only during the first Pokémon Center healing interaction.
+The original Yes/No menu remains attached to the same text box and is not
+replaced by the mod.
+
+POKéMON CENTER FLOW FIX — v1.15.2
+=================================
+
+FIRST VISIT
+-----------
+1. Welcome to our Pokémon Center!
+2. We heal your Pokémon back to perfect health!
+3. Shall we heal your Pokémon?
+4. Original Yes/No menu
+
+REPEAT VISITS
+-------------
+1. Welcome to our Pokémon Center!
+2. We heal your Pokémon back to perfect health!
+3. Original Yes/No menu
+
+YES
+---
+1. OK. We'll need your Pokémon.
+2. Original party healing and machine animation
+3. Thank you! Your Pokémon are fighting fit!
+4. We hope to see you again!
+
+NO
+--
+1. We hope to see you again!
+
+TECHNICAL CORRECTIONS
+---------------------
+- Choice options are never attached to Welcome.
+- On first visits, choice options are attached only to Shall we heal?
+- On repeat visits, choice options are attached only to Perfect health.
+- The combined fighting-fit/farewell TextBox is split into two voiced boxes.
+- The original onDone callback runs only after the farewell closes.
+- The original choice callback is preserved and wrapped only to stop voice.
+
+
+VIRIDIAN CITY POKéMON CENTER NPCs — v1.16.0
+============================================
+
+105 viridian_pokecenter_cooltrainer_001_center_every_town.ogg
+    There's a Pokémon Center in every town ahead.
+    Source: _ViridianPokecenterCooltrainerMText, first paragraph
+
+106 viridian_pokecenter_cooltrainer_002_no_charge.ogg
+    They don't charge any money either!
+    Source: _ViridianPokecenterCooltrainerMText, second paragraph
+
+107 viridian_pokecenter_gentleman_001_use_pc.ogg
+    You can use that PC in the corner.
+    Source: _ViridianPokecenterGentlemanText, first paragraph
+
+108 viridian_pokecenter_gentleman_002_receptionist_kind.ogg
+    The receptionist told me. So kind!
+    Source: _ViridianPokecenterGentlemanText, second paragraph
+
+109 viridian_pokecenter_visitor_001_heal_tired_hurt_fainted.ogg
+    Pokémon Centers heal your tired, hurt or fainted Pokémon!
+    Source: _ViridianCityPokecenterGuyText
+
+110 viridian_pokecenter_receptionist_001_welcome_cable_club.ogg
+    Welcome to the Cable Club!
+
+111 viridian_pokecenter_receptionist_002_apply_here.ogg
+    Please apply here.
+
+112 viridian_pokecenter_receptionist_003_save_game.ogg
+    Before opening the link, we have to save the game.
+
+113 viridian_pokecenter_receptionist_004_come_again.ogg
+    Please come again!
+
+CABLE CLUB FLOW
+---------------
+CONNECTED
+1. Welcome to the Cable Club!
+2. Please apply here.
+3. Before opening the link, we have to save the game.
+4. Original Yes/No menu
+
+Choosing Yes preserves the original save and link routines.
+Choosing No proceeds to the separately voiced Please come again! box.
+
+NOT CONNECTED
+1. Welcome to the Cable Club!
+2. The original reserved-for-two-friends explanation remains displayed.
+
+TECHNICAL NOTES
+---------------
+- Multi-paragraph visitor text is split only at its original paragraph breaks.
+- Original completion callbacks run after the final voiced page.
+- Cable Club choice options are attached only to the save-warning page.
+- The original choice callback is preserved and wrapped only for voice cleanup.
+- The Cable Club farewell is scoped to the immediately preceding No response.
+- All nine clips are mono OGG Vorbis at 44.1 kHz and approximately -20 LUFS.
+
+
+VIRIDIAN CITY POKé MART TRANSACTION LINES — v1.16.1
+===================================================
+
+114 viridian_mart_clerk_005_here_you_are_thank_you.ogg
+    Here you are! Thank you!
+    Source: _PokemartBoughtItemText
+    Trigger: successful BUY transaction only
+
+115 viridian_mart_clerk_006_thank_you.ogg
+    Thank you!
+    Source: _PokemartThankYouText
+    Trigger: successful SELL transaction only
+
+TECHNICAL NOTES
+---------------
+- These lines are ListMenu footers, not TextBoxes.
+- The watcher is limited to dialogue-mode lists titled BUY or SELL.
+- Matching uses the canonical ROM-derived text keys with faithful fallbacks.
+- Money, inventory, purchase sound, quantity selection and confirmation logic
+  remain entirely in the original ShopMenu callbacks.
+- Starting another transaction or leaving the list stops only the voice owned
+  by that mart footer.
+- Repeated purchases and sales replay correctly even though the success footer
+  text is identical from one transaction to the next.
+- Both clips are mono OGG Vorbis at 44.1 kHz and approximately -20 LUFS.
+
+
+VIRIDIAN CITY POKé MART NPCs + SALE CLIP REPAIR — v1.16.2
+=========================================================
+
+115 viridian_mart_clerk_006_thank_you.ogg
+    Thank you!
+    Source: _PokemartThankYouText
+    Trigger: successful SELL transaction only
+    Repair: removed the unrelated loud vocal artifact beginning near 0.68 s;
+            the replacement ends after the intended words with a short fade.
+
+116 viridian_mart_youngster_001_many_antidotes.ogg
+    This shop sells many ANTIDOTEs.
+    Source: _ViridianMartYoungsterText
+    Map object: VIRIDIAN_MART index 2
+
+117 viridian_mart_cooltrainer_001_potions_sold_out.ogg
+    No! POTIONs are all sold out.
+    Source: _ViridianMartCooltrainerMText
+    Map object: VIRIDIAN_MART index 3
+
+TECHNICAL NOTES
+---------------
+- Both NPCs use stable Viridian Mart object-index routing.
+- The original facing and dialogue-completion callbacks are preserved.
+- Shop menus, Oak's Parcel scripting, buy/sell callbacks, money and inventory
+  logic are unchanged.
+- All new/repaired clips are mono OGG Vorbis at 44.1 kHz and approximately
+  -20 LUFS.
+
+
+VIRIDIAN CITY CATERPIE / WEEDLE YOUNGSTER — v1.16.3
+==================================================
+
+118 viridian_city_youngster2_001_caterpillar_question.ogg
+    You want to know about the two kinds of caterpillar Pokémon?
+    Source: _ViridianCityYoungster2YouWantToKnowAboutText
+    Trigger: initial question before the original Yes/No ChoiceBox
+
+119 viridian_city_youngster2_002_caterpie_no_poison_weedle_does.ogg
+    CATERPIE has no poison, but WEEDLE does.
+    Source: ViridianCityYoungster2CaterpieAndWeedleDescriptionText, first page
+    Trigger: Yes branch only
+
+120 viridian_city_youngster2_003_watch_poison_sting.ogg
+    Watch out for its POISON STING!
+    Source: ViridianCityYoungster2CaterpieAndWeedleDescriptionText, second page
+    Trigger: Yes branch only
+
+121 viridian_city_youngster2_004_ok_then.ogg
+    Oh, OK then!
+    Source: ViridianCityYoungster2OkThenText
+    Trigger: No branch only
+
+TECHNICAL NOTES
+---------------
+- The original flavor script still creates and owns the Yes/No ChoiceBox.
+- The question TextBox's original onDone callback is preserved.
+- The combined Yes response is split at its original paragraph boundary so
+  each supplied recording starts on the correct page.
+- The No branch remains a single voiced TextBox.
+- All four clips are mono OGG Vorbis at 44.1 kHz and approximately -20 LUFS.
+
+
+VIRIDIAN CITY POKé BALL YOUNGSTER — v1.16.4
+================================================
+
+122 viridian_city_youngster1_001_pokeballs_at_waist.ogg
+    Those POKé BALLs at your waist!
+    Source: _ViridianCityYoungster1Text, opening sentence
+    Map object: VIRIDIAN_CITY index 1
+
+123 viridian_city_youngster1_002_you_have_pokemon.ogg
+    You have POKéMON!
+    Source: _ViridianCityYoungster1Text, second sentence
+    Map object: VIRIDIAN_CITY index 1
+
+124 viridian_city_youngster1_003_carry_use_anywhere.ogg
+    It's great that you can carry and use POKéMON any time, anywhere!
+    Source: _ViridianCityYoungster1Text, final paragraph
+    Map object: VIRIDIAN_CITY index 1
+
+TECHNICAL NOTES
+---------------
+- The original first text page contains the first two sentences; this build
+  separates them so each supplied recording has its own advance point.
+- The final paragraph remains its own page.
+- The original NPC facing and dialogue-completion callback are preserved.
+- Routing supports both the generated text label and VIRIDIAN_CITY object
+  index 1, covering direct and generic map-text paths.
+- All three clips are mono OGG Vorbis at 44.1 kHz and approximately -20 LUFS.
+
+
+VIRIDIAN SCHOOL HOUSE — v1.16.5
+================================
+
+125 viridian_school_brunette_001_memorize_notes.ogg
+    Whew! I'm trying to memorize all my notes.
+    Source: _ViridianSchoolHouseBrunetteGirlText
+    Map object: VIRIDIAN_SCHOOL_HOUSE index 1
+
+126 viridian_school_cooltrainer_001_read_blackboard.ogg
+    Okay! Be sure to read the blackboard carefully!
+    Source: _ViridianSchoolHouseCooltrainerFText
+    Map object: VIRIDIAN_SCHOOL_HOUSE index 2
+
+TECHNICAL NOTES
+---------------
+- Both exact generated text labels are registered through Commands.show_text.
+- Stable VIRIDIAN_SCHOOL_HOUSE object-index routing provides a direct map-text fallback.
+- The instructor's original two paragraphs are combined into one four-line box because the supplied recording reads them as one continuous clip.
+- The blackboard background interaction itself is unchanged.
+- Both clips are mono OGG Vorbis at 44.1 kHz and approximately -20 LUFS.
+
+
+VIRIDIAN NICKNAME HOUSE — v1.16.7
+==================================
+
+127 viridian_nickname_little_girl_001_daddy_loves_pokemon.ogg
+    My Daddy loves POKéMON too.
+    Source: _ViridianNicknameHouseLittleGirlText
+    Map object: VIRIDIAN_NICKNAME_HOUSE index 2
+
+128 viridian_nickname_balding_guy_001_nicknames_fun_hard.ogg
+    Coming up with nicknames is fun, but hard.
+    Source: _ViridianNicknameHouseBaldingGuyText, first paragraph
+    Map object: VIRIDIAN_NICKNAME_HOUSE index 1
+
+129 viridian_nickname_balding_guy_002_simple_names.ogg
+    Simple names are the easiest to remember.
+    Source: _ViridianNicknameHouseBaldingGuyText, second paragraph
+    Map object: VIRIDIAN_NICKNAME_HOUSE index 1
+
+TECHNICAL NOTES
+---------------
+- Both exact generated text labels are registered through Commands.show_text.
+- Stable VIRIDIAN_NICKNAME_HOUSE object-index routing provides a direct map-text fallback.
+- Both of the balding man's original paragraphs now retain their own voiced page.
+- The SPEARY bird dialogue, cry, and clipboard sign are unchanged.
+- All three supplied house clips are mono OGG Vorbis at 44.1 kHz and approximately -20 LUFS.
+
+SHARED POKé MART ATTENDANT — v1.16.8
+====================================
+
+130 viridian_mart_clerk_007_greeting.ogg
+    Hi there! May I help you?
+    Source: _PokemartGreetingText / ShopMenu entry
+
+131 viridian_mart_clerk_008_take_your_time.ogg
+    Take your time.
+    Source: _PokemartBuyingGreetingText / BUY footer
+
+132 viridian_mart_clerk_009_not_enough_money.ogg
+    You don't have enough money.
+    Source: _PokemartNotEnoughMoneyText / BUY footer
+
+133 viridian_mart_clerk_010_bag_full.ogg
+    You can't carry any more items.
+    Source: _PokemartItemBagFullText / BUY footer
+
+134 viridian_mart_clerk_011_what_to_sell.ogg
+    What would you like to sell?
+    Source: _PokemartSellingGreetingText / SELL entry footer
+
+135 viridian_mart_clerk_012_nothing_to_sell.ogg
+    You don't have anything to sell.
+    Source: _PokemartNoItemsToSellText / empty SELL footer
+
+136 viridian_mart_clerk_013_cant_price_that.ogg
+    I can't put a price on that.
+    Source: _PokemartUnsellableItemText / SELL footer
+
+137 viridian_mart_clerk_014_anything_else.ogg
+    Is there anything else I can do?
+    Source: _PokemartAnythingElseText / return to BUY-SELL-QUIT menu
+
+TECHNICAL NOTES
+---------------
+- The item-name and price prompts remain unvoiced because they contain dynamic variables.
+- "Take your time" was cut before a separate trailing vocal burst.
+- "You don't have enough money" was cut before a separate laugh-like tail.
+- All eight files were tail-trimmed, given short fades, converted to mono
+  OGG Vorbis at 44.1 kHz, and normalized to approximately -20 LUFS.
+- The SELL entry and empty-inventory footers are restored to their canonical
+  fixed dialogue on Gen1Recomp revisions that otherwise reuse the BUY greeting
+  or display only a generic empty-list message.
+
+
+VIRIDIAN CITY GIRL / SLEEPING GRANDFATHER — v1.16.9
+====================================================
+138 viridian_city_girl_001_grandpa_mean.ogg
+    Source: _ViridianCityGirlHasntHadHisCoffeeYetText
+    Spoken: “Oh Grandpa! Don't be so mean! He hasn't had his coffee yet.”
+
+139 viridian_city_girl_002_winding_trail.ogg
+    Source: _ViridianCityGirlWhenIGoShopText
+    Spoken: “When I go shop in Pewter City, I have to take the winding trail in Viridian Forest.”
+
+140 viridian_city_old_man_sleepy_001_cant_go_through.ogg
+    Source: _ViridianCityOldManSleepyPrivatePropertyText, first page
+    Spoken: “You can't go through here!”
+
+141 viridian_city_old_man_sleepy_002_private_property.ogg
+    Source: _ViridianCityOldManSleepyPrivatePropertyText, second page
+    Spoken: “This is private property!”
+
+VIRIDIAN CITY AWAKE GRANDFATHER / CATCHING TUTORIAL — v1.17.0
+================================================================
+142 viridian_city_old_man_001_had_coffee.ogg
+    Source: _ViridianCityOldManHadMyCoffeeNowText, first page
+    Spoken: “Ahh, I've had my coffee now and I feel great!”
+
+143 viridian_city_old_man_002_go_through.ogg
+    Source: _ViridianCityOldManHadMyCoffeeNowText, second page
+    Spoken: “Sure you can go through!”
+
+144 viridian_city_old_man_003_in_hurry.ogg
+    Source: _ViridianCityOldManHadMyCoffeeNowText, final question page
+    Spoken: “Are you in a hurry?”
+    Note: The original Yes/No choice is attached only to this final page.
+
+145 viridian_city_old_man_004_time_is_money.ogg
+    Source: _ViridianCityOldManTimeIsMoneyText (YES branch)
+    Spoken: “Time is money... Go along then.”
+
+146 viridian_city_old_man_005_using_pokedex.ogg
+    Source: _ViridianCityOldManKnowHowToCatchPokemonText, page 1 (NO branch)
+    Spoken: “I see you're using a Pokédex.”
+
+147 viridian_city_old_man_006_pokedex_updated.ogg
+    Source: _ViridianCityOldManKnowHowToCatchPokemonText, page 2
+    Spoken: “When you catch a Pokémon, Pokédex is automatically updated.”
+
+148 viridian_city_old_man_007_dont_know_catch.ogg
+    Source: _ViridianCityOldManKnowHowToCatchPokemonText, page 3
+    Spoken: “What? Don't you know how to catch Pokémon?”
+
+149 viridian_city_old_man_008_show_how.ogg
+    Source: _ViridianCityOldManKnowHowToCatchPokemonText, page 4
+    Spoken: “I'll show you how to then.”
+    Note: The original old_man_demo command runs after this page.
+
+150 viridian_city_old_man_009_weaken_target.ogg
+    Source: _ViridianCityOldManYouNeedToWeakenTheTargetText
+    Spoken: “First, you need to weaken the target Pokémon.”
+    Note: This page resumes only after the original Weedle-catching demo.
+
+TECHNICAL NOTES
+---------------
+- The original face-player, Yes/No branch, old_man_demo battle and script resume
+  sequence are preserved.
+- The Commands.show_text wrapper now forwards extraOpts and attaches choice
+  options only to the final separated page, preventing the Yes/No menu from
+  disappearing or opening before all three introductory clips finish.
+- All nine recordings received conservative outer-silence trims and short
+  fades. No separate scream/laugh artifact was detected in this batch.
+- All files are mono OGG Vorbis at 44.1 kHz and approximately -20 LUFS.
+
+VIRIDIAN CITY GYM WATCHER — v1.17.1
+====================================
+151 viridian_city_gym_watcher_001_gym_always_closed.ogg
+    Source: Viridian City Gym watcher, closed-Gym state, first paragraph
+    Spoken: “This Pokémon Gym is always closed.”
+
+152 viridian_city_gym_watcher_002_wonder_leader.ogg
+    Source: Viridian City Gym watcher, closed-Gym state, second paragraph
+    Spoken: “I wonder who the Leader is?”
+
+TECHNICAL NOTES — v1.17.1
+-------------------------
+- The watcher's original combined two-paragraph TextBox is separated only at
+  its existing paragraph boundary; the original completion callback is retained.
+- The later “Viridian Gym's Leader returned!” state is not matched or changed.
+- Both recordings were outer-silence trimmed, softly faded, converted to mono
+  OGG Vorbis at 44.1 kHz, and normalized to approximately -20 LUFS.
+
+VIRIDIAN CITY FISHER / TM42 DREAM EATER — v1.17.2
+==================================================
+153 viridian_city_fisher_001_doze_in_sun.ogg
+    Source: ViridianCityFisherYouCanHaveThisText, first paragraph
+    Spoken: “Yawn! I must have dozed off in the sun.”
+
+154 viridian_city_fisher_002_drowzee_dream.ogg
+    Source: ViridianCityFisherYouCanHaveThisText, second paragraph
+    Spoken: “I had this dream about a DROWZEE eating my dream. What's this? Where did this TM come from?”
+
+155 viridian_city_fisher_003_have_this_tm.ogg
+    Source: ViridianCityFisherYouCanHaveThisText, third paragraph
+    Spoken: “This is spooky! Here, you can have this TM.”
+
+156 viridian_city_fisher_004_dream_eater.ogg
+    Source: _ViridianCityFisherTM42ExplanationText
+    Spoken: “TM42 contains DREAM EATER... ...Snore...”
+
+157 viridian_city_fisher_005_too_much_stuff.ogg
+    Source: _ViridianCityFisherTM42NoRoomText
+    Spoken: “You have too much stuff already.”
+
+TECHNICAL NOTES — v1.17.2
+-------------------------
+- The Fisher interaction is handled before Gen1Recomp's generic gift handler,
+  restoring the original three-page pre-gift speech that the current port's
+  story5.lua entry omits.
+- A successful first interaction awards TM_DREAM_EATER, plays the standard
+  item-receipt sound, sets EVENT_GOT_TM42 and displays the original dynamic
+  player-name receipt message unvoiced.
+- A full Bag leaves EVENT_GOT_TM42 unset and plays the voiced no-room response,
+  allowing the full interaction to be retried after making space.
+- Repeat visits after receiving TM42 play only the DREAM EATER explanation,
+  matching Pokémon Red's original branch.
+- All five recordings were checked for detached scream/laughter tails. None
+  were detected; only conservative outer-silence trimming and short fades were
+  applied before mono 44.1 kHz OGG conversion and -20 LUFS normalization.
+
+
+
+VIRIDIAN CITY GYM WATCHER — v1.17.3
+====================================
+158 viridian_city_gym_watcher_003_leader_returned.ogg
+    Source: _ViridianCityGambler1GymLeaderReturnedText
+    Spoken: “VIRIDIAN GYM's LEADER returned!”
+
+TECHNICAL NOTES — v1.17.3
+-------------------------
+- This is the watcher's late-game state after Giovanni returns to Viridian Gym.
+- The earlier closed-Gym two-page state remains unchanged.
+- The recording was checked for a detached tail artifact; none was present.
+- It received conservative outer-silence trimming, short fades, mono 44.1 kHz
+  OGG Vorbis conversion, and normalization to approximately -20 LUFS.
+
+
+ROUTE 22 — FIRST RIVAL ENCOUNTER — v1.17.4
+================================================
+159 route22_rival1_001_hey.ogg
+    Source: _Route22RivalBeforeBattleText1, first paragraph
+    Spoken: “Hey!”
+
+160 route22_rival1_002_pokemon_league.ogg
+    Source: _Route22RivalBeforeBattleText1, second paragraph
+    Spoken: “You're going to the Pokémon League?”
+
+161 route22_rival1_003_no_badges.ogg
+    Source: _Route22RivalBeforeBattleText1, third paragraph
+    Spoken: “Forget it! You probably don't have any Badges!”
+
+162 route22_rival1_004_guard_wont_let_through.ogg
+    Source: _Route22RivalBeforeBattleText1, fourth paragraph
+    Spoken: “The guard won't let you through!”
+
+163 route22_rival1_005_pokemon_stronger.ogg
+    Source: _Route22RivalBeforeBattleText1, fifth paragraph
+    Spoken: “By the way, did your Pokémon get any stronger?”
+
+TECHNICAL NOTES — v1.17.4
+-------------------------
+- The five recordings map one-to-one to the original five pre-battle paragraphs.
+- The first text page still displays the save's dynamic rival and player names;
+  the recording voices only the supplied fixed word “Hey!”.
+- The original Route 22 ambush movement, rival battle, victory/loss handling,
+  event flag, post-battle dialogue and rival exit movement remain unchanged.
+- All five files received conservative outer-silence trimming and short fades,
+  then mono 44.1 kHz OGG Vorbis conversion and approximately -20 LUFS normalization.
+
+VIRIDIAN FOREST SOUTH GATE — v1.17.5
+================================================
+164 viridian_forest_south_gate_girl_001_going_to_forest.ogg
+    Source: _ViridianForestSouthGateGirlText
+    Spoken: “Are you going to Viridian Forest?”
+
+165 viridian_forest_south_gate_girl_002_natural_maze.ogg
+    Source: _ViridianForestSouthGateGirlText
+    Spoken: “Be careful, it's a natural maze!”
+
+166 viridian_forest_south_gate_little_girl_001_rattata_bite.ogg
+    Source: _ViridianForestSouthGateLittleGirlText
+    Spoken: “Rattata may be small, but its bite is wicked!”
+
+167 viridian_forest_south_gate_little_girl_002_did_you_get_one.ogg
+    Source: _ViridianForestSouthGateLittleGirlText
+    Spoken: “Did you get one?”
+
+TECHNICAL NOTES — v1.17.5
+-------------------------
+- Each vanilla NPC speech is one text resource; the supplied recordings are split
+  into two dialogue advances per girl so every clip begins at its own page.
+- Exact text-label routing is backed by VIRIDIAN_FOREST_SOUTH_GATE object indices
+  1 (girl) and 2 (little girl) for compatibility with directly displayed map text.
+- The source recordings were checked for detached tail artifacts. Conservative
+  trimming removes only outer silence/residual tail noise, followed by short fades,
+  mono 44.1 kHz OGG Vorbis conversion and approximately -20 LUFS normalization.
+
+
+
+VIRIDIAN FOREST — MAIN MAP NPCs AND TRAINERS — v1.17.6
+==========================================================
+168 viridian_forest_youngster1_001_friends.ogg
+    Source: _ViridianForestYoungster1Text, first paragraph
+    Spoken: “I came here with some friends!”
+
+169 viridian_forest_youngster1_002_pokemon_fights.ogg
+    Source: _ViridianForestYoungster1Text, second paragraph
+    Spoken: “They're out for Pokémon fights!”
+
+170 viridian_forest_youngster5_001_ran_out_pokeballs.ogg
+    Source: _ViridianForestYoungster5Text, first paragraph
+    Spoken: “I ran out of Poké Balls to catch Pokémon with!”
+
+171 viridian_forest_youngster5_002_carry_extras.ogg
+    Source: _ViridianForestYoungster5Text, second paragraph
+    Spoken: “You should carry extras!”
+
+172 viridian_forest_bug_catcher1_001_battle.ogg
+    Source: _ViridianForestYoungster2BattleText
+    Spoken: “Hey! You have Pokémon! Come on! Let's battle'em!”
+
+173 viridian_forest_bug_catcher1_002_defeat.ogg
+    Source: _ViridianForestYoungster2EndBattleText
+    Spoken: “No! Caterpie can't cut it!”
+
+174 viridian_forest_bug_catcher1_003_after.ogg
+    Source: _ViridianForestYoungster2AfterBattleText
+    Spoken: “Ssh! You'll scare the bugs away!”
+
+175 viridian_forest_bug_catcher2_001_battle.ogg
+    Source: _ViridianForestYoungster3BattleText
+    Spoken: “Yo! You can't jam out if you're a Pokémon trainer!”
+
+176 viridian_forest_bug_catcher2_002_defeat.ogg
+    Source: _ViridianForestYoungster3EndBattleText
+    Spoken: “Huh? I ran out of Pokémon!”
+
+177 viridian_forest_bug_catcher2_003_after.ogg
+    Source: _ViridianForestYoungster3AfterBattleText
+    Spoken: “Darn! I'm going to catch some stronger ones!”
+
+178 viridian_forest_bug_catcher3_001_battle.ogg
+    Source: _ViridianForestYoungster4BattleText
+    Spoken: “Hey, wait up! What's the hurry?”
+
+179 viridian_forest_bug_catcher3_002_defeat.ogg
+    Source: _ViridianForestYoungster4EndBattleText
+    Spoken: “I give! You're good at this!”
+
+180 viridian_forest_bug_catcher3_003_after_ground.ogg
+    Source: _ViridianForestYoungster4AfterBattleText, first paragraph
+    Spoken: “Sometimes, you can find stuff on the ground!”
+
+181 viridian_forest_bug_catcher3_004_after_dropped.ogg
+    Source: _ViridianForestYoungster4AfterBattleText, second paragraph
+    Spoken: “I'm looking for the stuff I dropped!”
+
+TECHNICAL NOTES — v1.17.6
+-------------------------
+- These 14 recordings cover every human NPC line on the main Viridian Forest map.
+- The three defeat lines are voiced on the battle screen through a map-scoped
+  BattleState queue hook; pre-battle and post-battle text use exact source labels.
+- Object-index fallbacks are limited to the two non-trainer NPCs, preserving all
+  trainer sight, approach, battle, event-flag and post-battle logic.
+- Recordings received conservative outer-silence trimming, short fades, mono
+  44.1 kHz OGG Vorbis conversion and normalization to approximately -20 LUFS.
+
+
+VIRIDIAN FOREST NORTH GATE — v1.17.7
+=========================================
+182 viridian_forest_north_gate_super_nerd_001_forests_caves.ogg
+    Source: _ViridianForestNorthGateSuperNerdText, first paragraph
+    Spoken: “Many Pokémon live only in forests and caves.”
+
+183 viridian_forest_north_gate_super_nerd_002_look_everywhere.ogg
+    Source: _ViridianForestNorthGateSuperNerdText, second paragraph
+    Spoken: “You need to look everywhere to get different kinds!”
+
+184 viridian_forest_north_gate_gramps_001_roadside_bushes.ogg
+    Source: _ViridianForestNorthGateGrampsText, first paragraph
+    Spoken: “Have you noticed the bushes on the roadside?”
+
+185 viridian_forest_north_gate_gramps_002_special_move.ogg
+    Source: _ViridianForestNorthGateGrampsText, second paragraph
+    Spoken: “They can be cut down by a special Pokémon move.”
+
+TECHNICAL NOTES — v1.17.7
+-------------------------
+- These four recordings complete all human NPC dialogue in both Viridian Forest gatehouses.
+- Each supplied recording maps one-to-one to an original paragraph/dialogue advance.
+- Exact text-label routing is backed by VIRIDIAN_FOREST_NORTH_GATE object indices
+  1 (Super Nerd) and 2 (Gramps), preserving the original passive NPC behavior.
+- Recordings received conservative outer-silence trimming, short fades, mono
+  44.1 kHz OGG Vorbis conversion and normalization to approximately -20 LUFS.
+
+
+PEWTER CITY — OUTDOOR NPCs — v1.17.9
+========================================
+186 pewter_city_cooltrainer_m_001_serious_trainers.ogg
+    Source: _PewterCityCooltrainerMText, first paragraph
+    Spoken: “There aren't many serious Pokémon trainers here!”
+
+187 pewter_city_cooltrainer_m_002_brock_into_it.ogg
+    Source: _PewterCityCooltrainerMText, second paragraph
+    Spoken: “They're all like Bug Catchers, but Pewter Gym's Brock is totally into it!”
+
+188 pewter_city_cooltrainer_f_001_clefairy_moon.ogg
+    Source: _PewterCityCooltrainerFText, first paragraph
+    Spoken: “It's rumored that Clefairys came from the moon!”
+
+189 pewter_city_cooltrainer_f_002_moon_stone.ogg
+    Source: _PewterCityCooltrainerFText, second paragraph
+    Spoken: “They appeared after Moon Stone fell on Mt. Moon.”
+
+190 pewter_city_super_nerd1_001_museum_question.ogg
+    Source: _PewterCitySuperNerd1DidYouCheckOutMuseumText
+    Spoken: “Did you check out the Museum?”
+
+191 pewter_city_super_nerd1_002_fossils_amazing.ogg
+    Source: _PewterCitySuperNerd1WerentThoseFossilsAmazingText (YES)
+    Spoken: “Weren't those fossils from Mt. Moon amazing?”
+
+192 pewter_city_super_nerd1_003_have_to_go.ogg
+    Source: _PewterCitySuperNerd1YouHaveToGoText (NO)
+    Spoken: “Really? You absolutely have to go!”
+
+193 pewter_city_super_nerd2_001_what_doing.ogg
+    Source: _PewterCitySuperNerd2DoYouKnowWhatImDoingText
+    Spoken: “Psssst! Do you know what I'm doing?”
+
+194 pewter_city_super_nerd2_002_hard_work.ogg
+    Source: _PewterCitySuperNerd2ThatsRightText (YES)
+    Spoken: “That's right! It's hard work!”
+
+195 pewter_city_super_nerd2_003_spraying_repel.ogg
+    Source: _PewterCitySuperNerd2ImSprayingRepelText (NO)
+    Spoken: “I'm spraying Repel to keep Pokémon out of my garden!”
+
+196 pewter_city_youngster_001_brock_challengers.ogg
+    Source: _PewterCityYoungsterYoureATrainerFollowMeText, opening portion
+    Spoken: “You're a trainer, right? Brock's looking for new challengers!”
+
+197 pewter_city_youngster_002_follow_me.ogg
+    Source: _PewterCityYoungsterYoureATrainerFollowMeText, final sentence
+    Spoken: “Follow me!”
+
+198 pewter_city_youngster_003_take_on_brock.ogg
+    Source: _PewterCityYoungsterGoTakeOnBrockText
+    Spoken: “If you have the right stuff, go take on Brock!”
+
+TECHNICAL NOTES — v1.17.9
+-------------------------
+- The two passive NPC conversations retain their original paragraph order.
+- Both Super Nerd Yes/No branches preserve the original ChoiceBox callbacks.
+- The youngster's original combined introduction is split into two voiced
+  advances; his escort movement begins only after “Follow me!” is dismissed.
+- The post-escort line preserves the original movement, music restoration and
+  return-to-spawn callback.
+- All 13 recordings were checked for detached tail bursts/laughter. None were
+  found. Only outer silence/residual tail noise was trimmed before short fades,
+  mono 44.1 kHz OGG conversion and approximately -20 LUFS normalization.
+- The original Game Boy script also contains _PewterCitySuperNerd1ItsRightHereText
+  (“It's right here!...See you around!”). Gen1Recomp's current Pewter flavor
+  script explicitly does not port that museum escort, so the line is not
+  reachable in the current engine and is not included in this build.

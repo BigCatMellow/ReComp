@@ -1,0 +1,81 @@
+# Files that stay in the repo and out of the distributed package.
+# Exact relative paths, one per line -- modkit matches literally, no globs.
+
+# The SDK suite and the probes it grew out of. A shipped test that requires
+# an engine module reads as a private require against the archive
+# (CONTRIBUTING-mods.md "What the PR must contain", 2).
+#
+# Eleven names were removed from this list when the twenty-one dead probes
+# were deleted: they all loaded `tests/drivers/util.lua`, a harness that
+# exists neither in this tree nor in any build, so every one of them failed
+# on its first line. modkit matches literally, so an entry for a file that
+# is gone is not an error -- it is just a lie about what the package
+# excludes, which is worse.
+tests/dramatic_shape_test.lua
+
+# Authoring tools. These run by hand on a machine that has imported its own
+# ROM, read the local cache, and emit assets/voxels/*.lua; the carved models
+# are what a player installs, the carving is not.
+tools/build_voxels.py
+tools/contact_sheets.py
+tools/building_images.py
+tools/building_voxels.py
+tools/voxel-survey.md
+assets/docs/buidling_to_voxel/sprite_extract.py
+assets/docs/buidling_to_voxel/voxel_build_verify.py
+
+# assets/docs/**.md stays in: data/voxel_heights.lua points a modder at the
+# building catalogue, and the methodology is where the geometry's provenance
+# is written down.
+
+# The generator sheets the ground art was cut from. A contact sheet is a
+# megabyte and a half of paper around six sixteen-pixel drawings; the strips
+# in assets/ground/ are what the mod loads, and these are what they were cut
+# from (tools/sheet2strip.ps1). Kept in the repo so the art can be recut,
+# out of the package so a player does not download nine megabytes of them.
+assets/ground/source/snowleve.png
+assets/ground/source/snowlevearvore.png
+assets/ground/source/snowmedioarvore.png
+assets/ground/source/snowpesado.png
+assets/ground/source/snowpesadoarvore.png
+
+# The sheet converter itself: it runs by hand on an authoring machine and
+# needs PowerShell and System.Drawing, neither of which a player has.
+tools/sheet2strip.ps1
+
+# Source GLB for the 3D grass tuft (~21 MB of 4K PBR maps). The shipped
+# bake is assets/ground/grass/grass.png + grass.mesh.bin (~90 KB); rebuild
+# with tools/optimize_grass_glb.py after replacing the GLB.
+assets/ground/grass/grass-texture.glb
+tools/optimize_grass_glb.py
+assets/ground/lamppost/lamppost_texture.glb
+tools/optimize_lamppost_glb.py
+
+# Source GLB for the player model. Nothing loads a GLB at runtime; this is
+# 26 MB of authoring asset and a player has no use for it.
+assets/mc/Mc.glb
+
+# The probes for the newest features, on the same rule as the suite above.
+tests/ecology_ground_probe.lua
+tests/rayfx_water_probe.lua
+tests/comforts_probe.lua
+tests/puddle_debug.lua
+tests/daynight_dial_probe.lua
+tests/night_probe.lua
+tests/shadow_length_probe.lua
+tests/grass_physics_probe.lua
+tests/wind_sway_probe.lua
+tests/after_rain_probe.lua
+tests/fog_probe.lua
+tests/thunder_probe.lua
+tests/lamppost_probe.lua
+tests/night_lamps_probe.lua
+
+# NOTE: twenty older probes are still NOT listed here and therefore still
+# ship (ambient_beds, ambsound_cost, carry_headless, coexist, ds_z_anchor,
+# hidden_glint, ice_sprite, mesh_lod, minimap, puddle_rtx, qol_extras,
+# seam_stream, snow_shot, town_rain, voxel_figure, water_physics,
+# water_roam, water_shimmer, weather_life). They were in the 1.17.0 package
+# too. Left as found rather than swept in on a release that is about the
+# grass -- but it is a gap against this file's own rule, and it is written
+# down here so the next person does not have to rediscover it.

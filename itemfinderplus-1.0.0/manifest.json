@@ -1,0 +1,17 @@
+{
+  "id": "itemfinderplus",
+  "name": "ItFindrPlus",
+  "version": "1.0.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "QOL",
+  "priority": 100,
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "permissions": ["engine_internals"],
+  "game_version": ">=0.0.0-0 <2.0.0",
+  "description": "While the Item Finder is in your bag, tiles hiding items twinkle a gentle sparkle every 2 seconds, near or far.",
+  "github": "magalvao/itemfinder-plus"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "useful_bag",
+  "name": "Useful Bag",
+  "version": "2.4.1",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "QOL",
+  "game_version": ">=0.0.0-0 <2.0.0",
+  "priority": 100,
+  "permissions": [
+    "engine_internals"
+  ],
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "description": "999-capacity bag auto-sorted into six pockets (Items, Medicine, Poké Balls, TMs / HMs, Battle Items, Key Items) cycled with Left/Right, plus TAB / R3 (right stick) to sort by name or count.",
+  "github": "ShaneMcGovernIE/useful-bag"
+}

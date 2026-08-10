@@ -1,0 +1,45 @@
+{
+  "modkit": "1.0.0",
+  "packed_at": "2026-08-02T10:08:45Z",
+  "id": "modern_kanto",
+  "version": "0.2.0",
+  "api": 2,
+  "engine_range": ">=0.0.0-0 <2.0.0",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 2390,
+      "sha256": "2e51b805762c6a7f1ab3fe30a24366151fc5401d13877aee2539ce3352bbbbd0"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1067,
+      "sha256": "f8db0a61639b83858b1159df29e8229c2e65115398570a5422226cd80074646c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5204,
+      "sha256": "2f1b8de70462882fb8660488b47cfb7ccd6dc38e5143694f99ce99604ec57073"
+    },
+    {
+      "path": "main.lua",
+      "bytes": 17264,
+      "sha256": "61fa6a6345074d73af2d6a69198e262a07d2687de475f2254069ac642d72e292"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 867,
+      "sha256": "32517f98257dc1aef8091ccbd27f280cf2edc1f77caa9ba4ae13324d5bb2b4c6"
+    },
+    {
+      "path": "mod.card",
+      "bytes": 1666,
+      "sha256": "4cac3561b61a879c9c7d9d474b805aa66d63894849c01ee5c17e4cd9e838d2ad"
+    }
+  ],
+  "lint": {
+    "no_rom_content": "pass",
+    "schema": "pass",
+    "cross_refs": "pass"
+  }
+}

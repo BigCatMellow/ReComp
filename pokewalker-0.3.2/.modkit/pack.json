@@ -1,0 +1,70 @@
+{
+  "modkit": "1.0.0",
+  "packed_at": "2026-08-01T15:46:31Z",
+  "id": "pokewalker",
+  "version": "0.3.2",
+  "api": 2,
+  "engine_range": ">=0.0.0-0 <2.0.0",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 5114,
+      "sha256": "15b34c713b2010592ad166c91444fc88c231ee23770233d4dbb95483b02d5e4b"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1070,
+      "sha256": "bff25c01393efdc51523b82a00a0bbf201d79d264858ea9259e5fc30954ead6a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 10328,
+      "sha256": "8acbda7f7e83b957cd9cd9d6d366708e63465285f9ca5eb6fd42c9093901c5e9"
+    },
+    {
+      "path": "card.lua",
+      "bytes": 2377,
+      "sha256": "e111126dada32bd0035f25060e81281556212eee88d8ee775128615d568844a2"
+    },
+    {
+      "path": "economy.lua",
+      "bytes": 3986,
+      "sha256": "4ecd101e173681270d000769a5e3f1dee76c04f63539494a6b34766727d07de0"
+    },
+    {
+      "path": "gifts.lua",
+      "bytes": 3273,
+      "sha256": "5137c1a45b99d28a3b4eb0d6954d8b6b92cb72c2e1062ffd3bb72a08504ad18e"
+    },
+    {
+      "path": "main.lua",
+      "bytes": 15981,
+      "sha256": "15c8d6b55678e1aa96d09c4f0b2ec1ac7d50411018a94c4386f9e07c65666b30"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 596,
+      "sha256": "86be0ae1db6415a567c1b58f87190d0d588fcb79db5c0404d184c2ad6857c7f6"
+    },
+    {
+      "path": "mod.card",
+      "bytes": 1891,
+      "sha256": "7bf5810db4d2d144085cf89d002f8c17de45fcc7b02335dfbd302587501d786a"
+    },
+    {
+      "path": "radar.lua",
+      "bytes": 2769,
+      "sha256": "310bb9cb109b43b1af500f35883ac5c86a89204b03658eb8b095b0063cb0583c"
+    },
+    {
+      "path": "shop.lua",
+      "bytes": 7288,
+      "sha256": "edc6a902479d46f3e25a87b7601b20cf0541879094349a3c7130d90149a2fc25"
+    }
+  ],
+  "lint": {
+    "no_rom_content": "pass",
+    "schema": "pass",
+    "cross_refs": "pass"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "HEAL_ANYWHERE",
+  "name": "Heal Anywhere",
+  "version": "1.0.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "QOL",
+  "game_version": ">=0.1.0 <2.0.0",
+  "priority": 40,
+  "author": "masterwebx",
+  "dependencies": [],
+  "permissions": ["engine_internals"],
+  "github": "masterwebx/gen1recomp-heal-anywhere",
+  "description": "Start menu heal; cost scales with badges and uses. Nurse resets. Spawns a Center machine in front of you."
+}

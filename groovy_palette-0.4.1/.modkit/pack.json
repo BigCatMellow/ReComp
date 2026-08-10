@@ -1,0 +1,55 @@
+{
+  "modkit": "1.0.0",
+  "packed_at": "2026-08-02T20:49:37Z",
+  "id": "groovy_palette",
+  "version": "0.4.1",
+  "api": 2,
+  "engine_range": ">=0.0.0-0 <2.0.0",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 5437,
+      "sha256": "e70b2820d0584ec5d444c4207a87ed8abd4fed22c62d824609db539fe3227d45"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1067,
+      "sha256": "f8db0a61639b83858b1159df29e8229c2e65115398570a5422226cd80074646c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8982,
+      "sha256": "7ea2c9009820873fc22bcb9ea2b054391d1b05c1bd433eea012b0a8a92cdd1e0"
+    },
+    {
+      "path": "assets/frames.png",
+      "bytes": 370,
+      "sha256": "22e23e938e5f67c92b24940abbb17434369bf8bc3c818624118d6bc74fc9dfca"
+    },
+    {
+      "path": "main.lua",
+      "bytes": 28183,
+      "sha256": "84d7b2bb0abea40d4ec3687632d2f41add819d75f77a6150964e9372b69b5129"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 836,
+      "sha256": "451083da8b1ea07173c5b7fb3f852308d040ae1417bdc09e22108bbda5876411"
+    },
+    {
+      "path": "mod.card",
+      "bytes": 2477,
+      "sha256": "41c9f822a59acb0986c965c4785a46962cf84e4f495229f8b0e334bcaa8242dc"
+    },
+    {
+      "path": "tools/make_frames.py",
+      "bytes": 7808,
+      "sha256": "04f868adf8f4bb68613670569182ab38a2d51a354dd6d852ab9e08a91ac55b3d"
+    }
+  ],
+  "lint": {
+    "no_rom_content": "pass",
+    "schema": "pass",
+    "cross_refs": "pass"
+  }
+}

@@ -1,0 +1,23 @@
+-- Sharing metadata, read by tooling and the manager detail pane only.
+return {
+  summary = "In battle, Start on a highlighted move shows type/power/acc/effect plus type effectiveness; Start also inspects moves when learning one.",
+  author = "ShaneMcGovernIE",
+  contact = "https://github.com/bryanthaboi/gen1recomp",
+  tags = { "ui", "battle", "quality-of-life", "beginner" },
+  differences = {
+    changed = {
+      "pressing Start or Q while a move is highlighted opens an info box",
+      "box shows the move's name, type, power, accuracy and effect description",
+      "damaging moves also show a type-effectiveness line vs the foe's types",
+      "the same shortcut inspects moves on the learn-a-new-move screen, including a NEW MOVE row for the move being learned",
+    },
+    added = {},
+    known = {
+      "Q is the desktop keyboard default; Start is controller-only; neither is rebindable",
+      "effect descriptions for the 87 vanilla ids are curated; unknown or mod-added ids fall back to a readable version of the id",
+      "each line of the box waits for an A/B press before scrolling to the next",
+    },
+  },
+  credits = {},
+  compat = { engine = ">=1.0.0 <2.0.0", modApi = 2 },
+}

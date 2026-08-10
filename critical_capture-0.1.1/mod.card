@@ -1,0 +1,19 @@
+# Critical Capture
+
+## Summary
+
+Gen 5's critical capture for Gen 1: a thrown ball can whistle, pause and shudder in mid-air, then shake once with far better odds. The chance scales with Pokedex completion, rescaled from the modern 600+ species to Gen 1's 151.
+
+## Differences
+
+- OPTIONS > CRIT CAPTURE cycles OFF / GEN 5 / GEN 6 (GEN 5 is the default).
+- GEN 5 / GEN 6 use Bulbapedia's model: `c = floor(a * multiplier / 6)`, with `a` as the exact Gen 1 catch probability scaled to 0-255.
+- Multiplier tiers rescaled to the 151-species dex in quarter steps: 0-15 = 0x, 16-30 = 0.25x, 31-45 = 0.5x, 46-60 = 0.75x, 61-75 = 1x, 76-90 = 1.25x, 91-105 = 1.5x, 106-120 = 1.75x, 121-135 = 2x, 136-150 = 2.25x, 151 = 2.5x.
+- The decisive single shake succeeds with the catch chance raised to 1/root (cube root in GEN 5, fourth root in GEN 6) -- always better odds than the vanilla roll.
+- A critical capture shakes the ball exactly once, like the modern games; a normal throw is byte-for-byte vanilla.
+- Master Balls never roll critical; Safari throws and the old man's catch tutorial behave as before.
+
+## Credits
+
+- Mechanics from Bulbapedia's Catch rate article (Gen 5 / Gen 6 capture methods).
+- The whistle is an original ChipAsm chip program; the crit toss arcs reuse the engine's own ball trajectory data.

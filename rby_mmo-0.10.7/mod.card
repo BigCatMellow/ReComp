@@ -1,0 +1,301 @@
+return {
+  summary = "Play Kanto with friends: see them walk or run, team up, chat, "
+    .. "trade and battle.",
+  author = "alamo",
+  tags = { "multiplayer", "mmo", "chat", "party", "trade", "pvp", "ranking",
+           "coop", "ui",
+           "experimental" },
+
+  differences = {
+    changed = {
+      "Adds an MMO row to the START menu (above SAVE).",
+      "Draws nicknames over other players in the overworld, and notifies "
+        .. "chat, arrivals and a party member's fights as toasts in the "
+        .. "corner of the screen.",
+      "Spawns runtime NPCs for other players on your current map.",
+      "Hooks movement.speed so holding B on foot moves at bike speed; off "
+        .. "the moment you are biking or surfing.",
+    },
+    added = {
+      "HOST GAME and JOIN GAME in the MMO menu -- no separate server to "
+        .. "install; one player hosts from inside the game and picks the "
+        .. "limit (2-64) while doing it.",
+      "Global, nearby, party and private chat, composed on the naming grid.",
+      "Toast notifications in the top-left corner for the things that happen "
+        .. "while the player is doing something else: every chat line in "
+        .. "every scope including their own, anybody joining or leaving the "
+        .. "hub, and -- to the party alone -- what the person they are "
+        .. "travelling with just defeated, was defeated by, or captured. A "
+        .. "dark plate and white text in Rajdhani (bundled, SIL OFL, "
+        .. "small and antialiased -- the ROM font has no lowercase and no "
+        .. "punctuation), drawn from render.hud over the finished frame so a "
+        .. "line arriving under a menu is still readable, five seconds each "
+        .. "and five at most with the oldest dropped first. The party events "
+        .. "ride a new mmo.party_event the hub fans out to the party and "
+        .. "nobody else, carrying a kind, a species, a level or a trainer -- "
+        .. "never the prose, which each client writes for itself.",
+      "Parties of two: invite a friend from the menu you get by walking up "
+        .. "and pressing A, and travel together -- open the TOWN MAP and "
+        .. "their character is standing at the city they are in, they are "
+        .. "on your map as their own character with their nickname over its "
+        .. "head marked with the cursor glyph, the PLAYERS list marks them, "
+        .. "and a members list carries both trainer cards and a chat scope "
+        .. "that reaches them anywhere.",
+      "Trade and battle requests from anywhere, run by the engine's own "
+        .. "link code over the hub.",
+      "A number page on this mod's naming screens, because the vanilla "
+        .. "grid has no digits and an address cannot be typed without one.",
+      "Two characters of the mod's own, NIRE and NIRE HOOD, in the same "
+        .. "list as the 36 the ROM carries -- original art, registered as "
+        .. "ordinary sprite records, and marked with the engine's hollow "
+        .. "arrow in the cursor's column so the two are told apart from the "
+        .. "ROM's own cast. Wearing one also changes the pics the "
+        .. "game draws you with: the battle back pic, the trainer card and "
+        .. "Oak's intro, for as long as you are wearing them.",
+      "A CHARACTER row on the MMO menu, twice over: under HOST GAME and JOIN "
+        .. "GAME while you are on your own, and under RANK -- above LEAVE and "
+        .. "END GAME -- while you are in a game. Both open the same character "
+        .. "list, the choice applies immediately and is written into the "
+        .. "save, so it comes back with that game. Picked in a game it also "
+        .. "goes out over the wire: the hub relearns your character and "
+        .. "passes it to everyone including you, each of their copies "
+        .. "rebuilds its walking view of you on the spot, and a trainer card "
+        .. "of yours somebody has open updates while they are looking at it. "
+        .. "Every later movement update carries it too, so a late joiner or "
+        .. "a missed message corrects itself. Each row of the list carries "
+        .. "that character's 16x16 front-facing portrait -- the same one the "
+        .. "trainer card and the leaderboard draw -- beside its name, so a "
+        .. "list of 38 labels is a list of faces. And the look is kept when "
+        .. "you leave: disconnecting, deliberately or not, no longer puts the "
+        .. "vanilla trainer back on. You wear what you picked until you pick "
+        .. "something else.",
+      "Ranked PVP: every link battle is scored by the hub on an Elo curve, "
+        .. "so the opponent's rating decides the size of the swing, and a "
+        .. "rematch inside the hour is worth half, then a quarter, then "
+        .. "nothing. Points floor at 0. A RANK row on the MMO menu shows "
+        .. "the top ten -- place, character, name, points -- and the score "
+        .. "sits on every trainer card.",
+      "The PLAYERS list says where everybody is: the column that read HERE "
+        .. "now carries the place name of the map that player is standing "
+        .. "on, resolved from the town-map data the engine decodes out of "
+        .. "the player's own ROM at runtime, with the engine's own "
+        .. "underscore-stripping fallback for a map that has no entry there. "
+        .. "PARTY and BUSY still take the column ahead of it, a place name "
+        .. "trims to whatever room the trainer name leaves, and a player in "
+        .. "a battle or a menu reports no cell at all, so their row is "
+        .. "unchanged.",
+      "Operator commands on the dedicated hub for the same two lists, with "
+        .. "no game client: `rby-mmo-hub players` prints who is connected, "
+        .. "where, busy or in a party, and their points; `rby-mmo-hub "
+        .. "ranking` prints the season out of ranking.json. players reads a "
+        .. "small status.json the hub keeps beside its config -- roster only, "
+        .. "no secrets, rewritten atomically and heartbeat-stamped -- so a "
+        .. "hub that is stopped or wedged is reported as such rather than as "
+        .. "a room full of players who left.",
+      "A message of the day on the dedicated hub, and the one part of this "
+        .. "release a player sees: a host sets `motd` in the config and "
+        .. "everybody who connects is greeted with it as a HUB line at the "
+        .. "top of their chat log -- no box to dismiss and nothing to press. "
+        .. "One line, 120 characters, the same charset chat "
+        .. "uses, re-read on SIGHUP. The name HUB is reserved at hello for "
+        .. "the same reason: a hub-originated line carries no sender id, so "
+        .. "the name is the only thing distinguishing it, and a player "
+        .. "connecting under it is refused and asked to pick another.",
+      "Live operator commands on the dedicated hub: `rby-mmo-hub watch` "
+        .. "repaints the players frame every couple of seconds (--once for a "
+        .. "single one, and the screen is only cleared on a real terminal), "
+        .. "`rby-mmo-hub history` prints the settled ranked battles out of a "
+        .. "history.jsonl ledger the hub appends to as they settle -- "
+        .. "bounded to about a megabyte by one rotated generation at 512 "
+        .. "KiB -- and `ranking` grows W/L columns projected from counts the "
+        .. "season file already kept. `stats`, `kick <name> --reason` and "
+        .. "`broadcast <text>` reach the running hub over admin.sock beside "
+        .. "the config: `stats` prints the live door counters -- connections, "
+        .. "handshakes in flight, wrong passcodes against the ceiling that "
+        .. "trips, lockdown -- which are kept in memory and reach no file, "
+        .. "counting addresses and never printing one; a kicked player is "
+        .. "shown the reason, and a broadcast arrives as "
+        .. "an ordinary chat line named HUB. The socket has no in-band auth "
+        .. "by design -- the 0700 data directory is the boundary, exactly as "
+        .. "it already is for the join codes in config.json next to it.",
+      "Admin join codes on the dedicated hub: `rby-mmo-hub invite --admin` "
+        .. "mints an ordinary six-character join code with one flag on it. It "
+        .. "joins the game exactly like any other code -- same characters, "
+        .. "same screen, same handshake -- and the hub *marks* the connection "
+        .. "it opened, so the in-game operator features that arrive later "
+        .. "have something to check. `invite list` marks the rows in a KIND "
+        .. "column with and without --reveal (what a code opens is not a "
+        .. "secret; the code is), and `revoke <id>` takes one back like any "
+        .. "other. The mark is visible only to operators: the welcome tells "
+        .. "that client about itself, roster/status.json/`players --json`/"
+        .. "`who` carry it, and "
+        .. "other players are never told, since it is deliberately kept out "
+        .. "of the presence record broadcast to everybody. Nothing in game "
+        .. "uses it yet. A hub with no credentials, including the hub.js "
+        .. "shim, has no admins at all.",
+      "Co-op 2-on-2 battles: walk into a trainer while you are in a party "
+        .. "and you are asked whether to wait for your friend or go in alone. "
+        .. "Waiting tells them where you are standing, and reaching the same "
+        .. "fight -- or walking up to the person standing at it -- offers to "
+        .. "join. A no costs nothing and is asked again next time; the fight "
+        .. "itself cannot be dodged, so B on that prompt is BATTLE ALONE. A "
+        .. "PARTY BATTLE row under BATTLE puts two whole parties against each "
+        .. "other, with all four having to agree. The battle itself is a real "
+        .. "four-monster field -- one turn order over all four, a target per "
+        .. "attack, and a side that loses only when both its trainers are out "
+        .. "-- with the engine's own damage, types, crits, status AND move "
+        .. "effects underneath it: the move that runs is the engine's own "
+        .. "performMove, so charge moves charge, SUBSTITUTE absorbs, recoil "
+        .. "recoils and stat stages move. All four commands are there -- "
+        .. "FIGHT, ITEM, SWITCH and RUN -- with items going through the "
+        .. "engine's own item effects. Against an NPC, RUN and a thrown ball "
+        .. "are refused the way any trainer battle refuses them; against "
+        .. "another party, RUN asks your partner first, and a consented flee "
+        .. "ends the battle as the runners' loss.",
+      "Hold-B running: on foot, holding B halves the frames per tile, the "
+        .. "same speed a bike gives, with a `B TO RUN` option (default on) "
+        .. "to turn it off. Other players see it too -- presence carries the "
+        .. "pace of each step, so a runner *and* a cyclist both step at the "
+        .. "doubled clock on their screens as well as yours.",
+      "A SERVERS row on the disconnected menu, once you have connected "
+        .. "anywhere before: every hub you have reached, favorites pinned "
+        .. "above the rest and sorted by address descending otherwise, each "
+        .. "with its own CONNECT / FAVORITE-UNFAVORITE / EDIT HOST / "
+        .. "EDIT CODE / RENAME submenu. Entries default-named by address, "
+        .. "rename up to 16 characters, and persist across quits, CONTINUE "
+        .. "and save-slot switches in rby_mmo_servers.json; the list caps at "
+        .. "16 with the oldest non-favorite evicted first.",
+    },
+    known = {
+      "One player simulates a co-op battle and the other three replay its "
+        .. "events, so a modified host could resolve a turn wrongly -- the "
+        .. "same trust the engine's own link host already takes, one player "
+        .. "wider.",
+      "A ranked 2-on-2 is scored as two matches paired by slot order, so "
+        .. "every player gets one rated result but which opponent they are "
+        .. "paired with is arbitrary. A co-op battle against an NPC scores "
+        .. "nothing -- there is nobody to rate.",
+      "No NAT traversal. A host behind a router must forward port 7788 for "
+        .. "anyone outside their LAN; a standalone hub (server/hub.js) on a "
+        .. "public box is the alternative.",
+      "No host migration when a player is the host. Hosting from the game "
+        .. "runs the relay inside that copy, so if the host leaves the game "
+        .. "ends for everyone -- they are told rather than left hanging, and "
+        .. "nobody else can take it over. A dedicated hub has no host at all: "
+        .. "a player leaving is just a player leaving.",
+      "Remote players freeze mid-step while you have a menu or text box "
+        .. "open, and resume when you close it. The engine updates only the "
+        .. "top state, so the whole overworld pauses under a modal -- this "
+        .. "is the same thing vanilla NPCs do.",
+      "The player limit is 2-64, host included, and is clamped in three "
+        .. "places so it cannot be set out of range by editing a file.",
+      "Hosting opens a port with no authentication: anyone who can reach "
+        .. "it can join under any name, and positions are self-reported, so "
+        .. "NEARBY chat is not an enforceable boundary. Host for people you "
+        .. "know. Idle connections, payload shape and chat rate are bounded; "
+        .. "identity is not.",
+      "Two implementations of one protocol -- Hub.lua in-game and hub.js "
+        .. "for a dedicated server -- can drift. Both are pinned by suites "
+        .. "asserting the same behaviours, but it is a real upkeep cost.",
+      "Nameplates are positioned from the tile offset to your own player, "
+        .. "because the mod API exposes no camera position. At a map edge "
+        .. "smaller than the screen, where the camera stops scrolling but "
+        .. "you keep walking, a label can sit a tile or two off.",
+      "Interacting with another player's avatar logs 'no text for ...' from "
+        .. "the engine before the menu opens: the avatar is a real NPC with "
+        .. "no dialogue, and the engine warns on that path.",
+      "Only one trade or battle at a time, per player.",
+      "A party is exactly two players, and either one leaving ends it for "
+        .. "both -- there is no party of one and no third seat. An invite "
+        .. "that is never answered stays outstanding until one of them "
+        .. "disconnects; nothing expires it.",
+      "A ranked result needs both players to report the same outcome, so a "
+        .. "player who quits mid-battle is scored as a draw for the side "
+        .. "still standing -- rage-quitting avoids the loss. Believing one "
+        .. "side alone is the larger hole: anyone could then mint wins "
+        .. "against a player who never connected.",
+      "A rating belongs to a trainer name on a hub, held by a claim ticket "
+        .. "the hub mints on the first visit and the player's copy carries "
+        .. "back. It is a ticket and not an account: it lives in the save "
+        .. "file and in rby_mmo_rank_tokens.json in the game's save folder, "
+        .. "and it crosses the same unencrypted link the join code does, so "
+        .. "anyone who can read either can take the name.",
+      "A claim is provisional until it is proved. Until a name has been "
+        .. "presented with its ticket, or has scored a ranked battle, the "
+        .. "claim follows whoever is connecting -- a minted ticket only says "
+        .. "one was posted, and a lost welcome used to lock a player out of "
+        .. "their own name forever. A name somebody is connected and ranked "
+        .. "under right now is not transferable, and neither is one that has "
+        .. "scored: from then on, somebody typing it without the ticket plays "
+        .. "normally and scores nothing.",
+      "The locations `rby-mmo-hub players` prints are map ids with their "
+        .. "underscores taken out (PALLET_TOWN reads as PALLET TOWN), not the "
+        .. "names Kanto itself uses. The real ones live in the ROM, which a "
+        .. "hub has never had and must never be shipped one; only the game "
+        .. "can resolve them, which is what the in-game PLAYERS list does.",
+      "Moderation on the dedicated hub is a host at a terminal, and nothing "
+        .. "else: a flood gate, bans and an allowlist in the config, and "
+        .. "kick and broadcast over a socket only someone who can already "
+        .. "read the join codes can open. There are no accounts, no roles, "
+        .. "no in-game report and nothing automatic -- a kick is somebody "
+        .. "typing it. Hosting from inside the game has none of it. Run a "
+        .. "hub for people you know.",
+      "No position interpolation: a remote player walks tile to tile at the "
+        .. "engine's step rate, so heavy latency reads as stuttering rather "
+        .. "than smooth motion.",
+      "Untested against a modded peer with a different link fingerprint "
+        .. "beyond what the engine's own handshake already refuses.",
+      "A peer running an older copy of this mod does not have NIRE or NIRE "
+        .. "HOOD in their catalog, so somebody wearing one shows up as RED "
+        .. "on their screen -- the same fallback a character their ROM does "
+        .. "not carry already gets.",
+      "The protocol has moved twice: the mid-game character change took it "
+        .. "from 6 to 7, and the party notifications took it from 7 to 8, so "
+        .. "copies from either side of one of those refuse each other at the "
+        .. "door and name both versions rather than connecting and going "
+        .. "quiet. The mod and its hub have to be updated together; there is "
+        .. "no degraded mode that connects without the newer messages.",
+      "A leaderboard already open on somebody's screen keeps the portrait it "
+        .. "was drawn with when a player changes character, until it is next "
+        .. "refreshed -- the same staleness the points on it already have. "
+        .. "Walking avatars, trainer cards and the roster all update live.",
+      "The battle and trainer-card pics only follow the two characters this "
+        .. "mod ships. A ROM character is a walking sheet and nothing else, "
+        .. "so wearing GIOVANNI on the map still fights as Red -- there is "
+        .. "no back pic in the catalog to borrow.",
+      "The portraits in the character list are read out of the same catalog "
+        .. "the characters themselves come from, so the 36 vanilla rows have "
+        .. "a face to show only once the player's own ROM has been imported "
+        .. "and decoded. A row with no art available lists as its name over "
+        .. "an empty gutter -- the list still works, it just shows less. The "
+        .. "two characters this mod ships carry their own art and are never "
+        .. "in that state.",
+      "A character you choose is now worn until you choose another one, in "
+        .. "single-player as well as in a game, so the way back to the "
+        .. "vanilla trainer is to pick RED rather than to leave. A save that "
+        .. "has never chosen one -- and a copy whose MY SPRITE option is "
+        .. "still on its default -- is drawn exactly as it was before, so "
+        .. "nobody gets a character they did not ask for.",
+    },
+  },
+
+  compat_notes = {
+    "Runs alongside DramaticShapeVoxelMod: both load clean and everything "
+      .. "works with the diorama on. Remote players render as voxel "
+      .. "characters, since this mod spawns real NPCs rather than drawing "
+      .. "avatars itself. Nameplates cannot be projected into a 3D world, "
+      .. "so they become a corner list while a mod owns the world pass.",
+  },
+
+  credits = {
+    { who = "Mirasein (https://www.mirasein.me)",
+      for_ = "original character art: NIRE and NIRE HOOD" },
+    { who = "bryanthaboi", for_ = "Gen1Recomp, and the link stack this "
+      .. "mod's trade and battle run on unmodified" },
+    { who = "Indian Type Foundry (https://github.com/itfoundry/rajdhani)",
+      for_ = "Rajdhani, the face the notifications are set in, "
+        .. "under the SIL Open Font License 1.1" },
+  },
+
+  compat = { engine = ">=0.0.0-0 <2.0.0", modApi = 2 },
+}

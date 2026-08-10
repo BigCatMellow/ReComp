@@ -1,0 +1,45 @@
+{
+  "modkit": "1.0.0",
+  "packed_at": "2026-08-08T00:22:30Z",
+  "id": "running_shoes",
+  "version": "1.4.1",
+  "api": 2,
+  "engine_range": ">=0.0.0-0 <2.0.0",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 13116,
+      "sha256": "94b6b470e5ae58af748c521b9785b37c07132f0ba461be67b433acb2a06a2ef3"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1067,
+      "sha256": "f8db0a61639b83858b1159df29e8229c2e65115398570a5422226cd80074646c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12127,
+      "sha256": "bcdaa7684d387b930a6a18de4a374beb45bc5f30aa4fc55d434ea349fd74a4a7"
+    },
+    {
+      "path": "main.lua",
+      "bytes": 37578,
+      "sha256": "af601c7652cc10271e950e1ceac0deb34583617fd4ed28efad85acb8dff366de"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 1066,
+      "sha256": "70226b1198e80b6ccb5a474fdeab03eda92dda3308e94b26ab35368b7d73d270"
+    },
+    {
+      "path": "mod.card",
+      "bytes": 2954,
+      "sha256": "056e2b15d77c1724caec5d461ba341a7bd97fec29da456dfc58a3f5bd06f0746"
+    }
+  ],
+  "lint": {
+    "no_rom_content": "pass",
+    "schema": "pass",
+    "cross_refs": "pass"
+  }
+}

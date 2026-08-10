@@ -1,0 +1,18 @@
+{
+  "id": "player_sprite_flip",
+  "name": "Player Sprite Flip",
+  "author": "eduardocalafell",
+  "github": "eduardocalafell/gen1recomp-player-sprite-flip",
+  "version": "0.1.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "GRAPHICS",
+  "game_version": ">=0.1.37 <2.0.0",
+  "priority": 90,
+  "dependencies": [],
+  "optional_dependencies": ["DRAMATIC_SHAPE"],
+  "conflicts": [],
+  "permissions": ["engine_internals"],
+  "description": "Horizontally flips your active Pokemon's sprite in the Dramatic Shape voxel overworld battle, so it faces the other way."
+}
