@@ -1,0 +1,20 @@
+return {
+  summary = "A cohesive, clarity-first modernization of Pokemon Gen 1.",
+  author = "BigCatMellow / Definitive Gen 1 project",
+  tags = { "overhaul", "quality-of-life", "mechanics", "ui" },
+  compat = { modApi = 2 },
+  differences = {
+    added = {
+      "Type-colored floating damage and healing numbers.",
+    },
+    changed = {
+      "Selected Gen 1 moves use later physical/special categories.",
+      "Damage feedback uses a clean no-box visual language.",
+    },
+    known = {
+      "0.1.0 is the initial framework build; most roadmap features are not implemented yet.",
+      "Colored classic-battle overlays currently use one isolated PaletteFX engine-internal adapter.",
+      "Changing the physical/special feature requires a mod reload/restart because move records merge at load time.",
+    },
+  },
+}
